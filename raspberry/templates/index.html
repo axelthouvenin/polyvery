@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Polyvery</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    	<script type=text/javascript> 
+		$(function() { $("#Gauche90").click(function (event) { $.getJSON('/Gauche90', { },
+    	function(data) { }); return false; }); });
+		
+		$(function() { $("#Avancer").click(function (event) { $.getJSON('/Avancer', { },
+    	function(data) { }); return false; }); });
+		
+		$(function() { $("#Droite90").click(function (event) { $.getJSON('/Droite90', { },
+    	function(data) { }); return false; }); });
+		
+		$(function() { $("#Reculer").click(function (event) { $.getJSON('/Reculer', { },
+    	function(data) { }); return false; }); }); 
+		
+		$(function() { $("#Droite").click(function (event) { $.getJSON('/Droite', { },
+    	function(data) { }); return false; }); });
+		
+		$(function() { $("#Gauche").click(function (event) { $.getJSON('/Gauche', { },
+    	function(data) { }); return false; }); });
+		
+		$(function() { $("#Stop").click(function (event) { $.getJSON('/Stop', { },
+    	function(data) { }); return false; }); });
+		
+		function playSound () {document.getElementById('play').play();}
+		</script>
+    </head>
+    <style type="text/css" media="screen">
+    body {
+        background-color : grey;
+        background-attachment:fixed;
+        background-repeat:no-repeat;
+	margin:0;
+	padding:0;
+    }
+
+	.title{
+		background-color:white;
+		opacity:50%;
+	}
+	
+    h1{
+        color : blue;
+		text-align:center;
+    }
+	
+	.container {
+	
+	}
+	
+	#panel des boutons
+	.container:first-child{
+	
+	}
+	
+	#affichage de la caméra
+	.container:nth-child(2){
+
+	}
+	
+	.item {
+		width: 49%;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	
+	.l2_button{
+		padding: 10px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	
+	input{
+		background: #0066A2;
+		color: white;
+		border-style: outset;
+		border-color: #0066A2;
+		height: 100px;
+		width: 100px;
+		font: bold 15px arial, sans-serif;
+		text-shadow:none;	
+	}
+	
+	input:hover {
+		background: #016ABC;
+		color: #fff;
+		border: 1px solid #eee;
+		box-shadow: 5px 5px 5px #eee;
+		text-shadow:none;
+	}
+    </style>
+
+    <body>
+	<div class="title">
+		<img id="logo_2i" src="https://www.dropbox.com/s/2swhk64ffgo4yj5/logo_2i.png?dl=1"/>
+		<h1>POLYVERY</h1>
+		<img id="logo_polytech" src="https://www.dropbox.com/s/x4anp97zm5h4566/logo_polytech.png?dl=1"/>
+	</div>
+        <div class="container">
+            <div class="item">
+                <center>
+
+                    <div class="l1_button">
+						<input type="button" id="Avancer" value = "Avancer" />
+                    </div>
+					<div class="l2_button">
+						<input type="button" id="Gauche90" value = "Gauche90" />
+                    </div>
+                    <div class="l2_button">
+						<input type="button" id="Gauche" value = "Gauche" />
+                    </div>
+					<div class="l2_button">
+						<input type="button" id="Stop" value = "Stop" />
+					</div>
+					<div class="l2_button">
+						<input type="button" id="Droite" value = "Droite" />
+					</div>
+					<div class="l2_button">
+						<input type="button" id="Droite90" value = "Droite90" />
+                    </div>
+					<div class="l3_button">
+						<input type="button" id="Reculer" value = "Reculer" />
+                    </div>            
+                </center>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('video_feed') }}" width="640" height="480">
+            </div>
+        </div>
+	<div id="bouton_msg_cov">
+	    <audio id="play" src="https://www.dropbox.com/s/dbmhppt90hln50f/message_polyvery.mp3?dl=1"></audio>
+	    <button onclick="playSound()">Play</button>
+    	    <script>function playSound () {document.getElementById('play').play();}</script>
+	</div>
+    </body>
+</html>
