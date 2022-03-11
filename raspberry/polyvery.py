@@ -220,7 +220,7 @@ def LirePortSerie():
             print("erreur trame reçue")
             
 # Fonction pour récupérer une valeur entre 2 positions dans une trame
-def RecupVal(str trame, str pos1,str pos2):
+def RecupVal(trame,pos1,pos2):
     if "-" in trame[pos1:pos2]:
         val = float(trame[pos1+1:pos2]) *-1
     else:
