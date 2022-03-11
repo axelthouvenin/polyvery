@@ -219,7 +219,7 @@ def LirePortSerie():
         else:
             print("erreur trame reçue")
             
-# Fonction pour récupérer la valeur dans une trame
+# Fonction pour récupérer une valeur entre 2 positions dans une trame
 def RecupVal(str trame, str pos1,str pos2):
     if "-" in trame[pos1:pos2]:
         val = float(trame[pos1+1:pos2]) *-1
@@ -233,9 +233,9 @@ def DemarrageServWeb():
         app.run(host='0.0.0.0',port="8000",debug=False)
 
 # Création et lancement du thread de lecture du port série et serveur web
-thread_serie = threading.Thread(target = LirePortSerie)
+thread_port_serie = threading.Thread(target = LirePortSerie)
 thread_serveur = threading.Thread(target = DemarrageServWeb)
-thread_serie.start()
+thread_port_serie.start()
 thread_serveur.start()
 
 # En cas de fin d'un des thread

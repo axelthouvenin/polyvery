@@ -213,7 +213,7 @@ def LirePortSerie():
             FU = RecupVal(str_trame,str_trame.find("FU=")+3,str_trame.find(";BU")-3)
             BU = RecupVal(str_trame,str_trame.find("BU=")+3,str_trame.find(";angle")-6)
         # c'est une trame de niveau de batterie
-        else if "batterie" in str_trame :
+        elif "batterie" in str_trame :
             print("batterie")
         # c'est une trame inconnue ou erronée
         else:
