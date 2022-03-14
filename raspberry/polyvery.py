@@ -189,13 +189,6 @@ def EviterObstacle():
             while FM == 1 && BM != 1 && BU !=-1:
                 pass
             Stop()
-        # mur derriere
-        elif BM == 1 :
-            commande = False
-            Avancer()
-            while BM == 1 && FM != 1 && FU !=-1:
-                pass
-            Stop()
         # vide devant
         elif FU == -1:
             commande = False
@@ -220,6 +213,7 @@ def LirePortSerie():
     while 1:
         trame=ser.readline()
         str_trame = str(trame)
+        print(str_trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame :
             # Reccupération de l'angle du capteur boussole
@@ -253,8 +247,10 @@ def DemarrageServWeb():
 # Création et lancement du thread de lecture du port série et serveur web
 thread_port_serie = threading.Thread(target = LirePortSerie)
 thread_serveur = threading.Thread(target = DemarrageServWeb)
+thread_evitement = threading.Thread(target = EviterObstacle)
 thread_port_serie.start()
 thread_serveur.start()
+thread_evitement.start()
 
 # En cas de fin d'un des thread
 #if
