@@ -247,8 +247,10 @@ def DemarrageServWeb():
 # Création et lancement du thread de lecture du port série et serveur web
 thread_port_serie = threading.Thread(target = LirePortSerie)
 thread_serveur = threading.Thread(target = DemarrageServWeb)
+thread_evitement = threading.Thread(target = EviterObstacle)
 thread_port_serie.start()
 thread_serveur.start()
+thread_evitement.start()
 
 # En cas de fin d'un des thread
 #if
