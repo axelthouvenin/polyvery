@@ -22,9 +22,9 @@ ser = serial.Serial(
 )
 counter=0
 
-# Initialisation des variables des capteurs
-angle, FL, FM, FR, FU,BU = 0, 0, 0, 0, 0, 0
-
+# Initialisation des variables des capteurs et de droit de pilotage par l'utilisateur
+angle, FL, FM, FR, FU, BU, BM = 0, 0, 0, 0, 0, 0, 2
+commande = False
 
 # Déclaration de la pi_camera
 pi_camera = VideoCamera(flip=False)
@@ -179,23 +179,41 @@ def Gauche90():
 
 
 # déplacement en cas d'obstacle rencontré (à refaire et valider)
-def EviterObstacleFrontal(angle):
-    Reculer()
-    time.sleep(4)
-    if(angle>=0):
-        cible = angle-180
-        print(cible)
-        Droite()
-        while angle>cible:
-            angle = LireAngle()           
-    else:
-        cible = angle +180
-        print(cible)
-        Gauche()
-        while angle<cible:
-            angle = LireAngle()
-    Stop()
-    print("evitement terminé")
+def EviterObstacle():
+    while 1:
+        commande = True
+        # mur devant
+        if FM == 1 :
+            commande = False
+            Reculer()
+            while FM == 1 && BM != 1 && BU !=-1:
+                pass
+            Stop()
+        # mur derriere
+        elif BM == 1 :
+            commande = False
+            Avancer()
+            while BM == 1 && FM != 1 && FU !=-1:
+                pass
+            Stop()
+        # vide devant
+        elif FU == -1:
+            commande = False
+            Reculer()
+            while FU == -1 && BM!=1 && BU !=-1:
+                pass
+            Stop()
+        #vide arriere
+        elif BU == -1:
+            commande = False
+            Avancer()
+            while BU ==-1 && FM!=1 && FU !=-1:
+                pass
+            Stop()
+            
+        
+            
+            
 # -----------------------------------------------------------------
 # Fonction de lecture du port série
 def LirePortSerie():
