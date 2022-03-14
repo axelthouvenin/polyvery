@@ -57,14 +57,13 @@ void loop () {
   //angle = angle * 180 / PI;
   envoi_mesures(dist_FL,dist_FM,dist_FR,dist_FU,dist_BU,dist_SL,dist_SR,0);
   // Délais, 10 microsecondes est le min des capteurs US
-  delay(50);
-    
+  delay(100);
 }
 
 
 // Fonction qui recoit les données mesurées et les envoie sur le bus série sous forme d'une trame
 // Structure de la trame :
-void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,int dist_SL,int dist_SR){
+void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,int dist_SL,int dist_SR,float angle){
   String trame ="";
   // Capteur avant gauche
   if(dist_FL>15){
@@ -123,10 +122,10 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
   }
   
   // Capteur avant sol
-  if(dist_FU>3){
+  if(dist_FU>5){
     trame += "FU=1;";
   }
-  else if(dist_FU<=3){
+  else if(dist_FU<=5){
     if(dist_FU==-1){
       trame += "FU=-1;";
     }
@@ -139,10 +138,10 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
   }
   
   // Capteur arrière sol
-  if(dist_BU>4){
+  if(dist_BU>6){
      trame += "BU=1;";
   }
-  else if(dist_BU<=4){
+  else if(dist_BU<=6){
     if(dist_BU==-1){
       trame += "BU=-1;";
     }
@@ -154,7 +153,5 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
     trame += "BU=0;";
   }
   
-  Serial.println("BU="+dist_BU);
-  Serial.println("FU="+dist_FU);
-  Serial.println(trame);
+  Serial.println(trame+"angle="+angle);
 }
