@@ -1,6 +1,6 @@
 # Librairies pour le serveur web et la caméra
 from flask import Flask, render_template, Response, request
-from camera import VideoCamera
+#from camera import VideoCamera
 import time
 import threading
 import os
@@ -27,27 +27,27 @@ angle, FL, FM, FR, FU, BU, BM = 0, 0, 0, 0, 0, 0, 2
 commande = False
 
 # Déclaration de la pi_camera
-pi_camera = VideoCamera(flip=False)
+#pi_camera = VideoCamera(flip=False)
 
 # Création de l'application Flask
 app = Flask(__name__)
 
 # Réccupération de la page HTML du site
-@app.route('/')
-def index():
-    return render_template('index.html') 
+#@app.route('/')
+#def index():
+ #   return render_template('index.html') 
 
 # Configuration de la caméra
-def gen(camera):
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+#def gen(camera):
+ #   while True:
+ #       frame = camera.get_frame()
+ #       yield (b'--frame\r\n'
+ #              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 #Lancement du flux vidéo
-@app.route('/video_feed')
-def video_feed():
-    return Response(gen(pi_camera),mimetype='multipart/x-mixed-replace; boundary=frame')
+#@app.route('/video_feed')
+#def video_feed():
+#    return Response(gen(pi_camera),mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # ----- Déclaration des fonctions de commandes des moteurs ----------
 #--- Cablage --------------------
