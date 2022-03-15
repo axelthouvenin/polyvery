@@ -213,11 +213,10 @@ def LirePortSerie():
     while 1:
         trame=ser.readline()
         str_trame = str(trame)
-        print(str_trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame :
             # Reccupération de l'angle du capteur boussole
-            #angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\r\n")-4)
+            angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\r\n")-4)
             # Reccupération des informations des capteurs US
             #FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM")-3)
             #FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR")-3)
