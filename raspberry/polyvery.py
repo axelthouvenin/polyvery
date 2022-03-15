@@ -219,7 +219,7 @@ def LirePortSerie():
             #FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM")-3)
             #FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR")-3)
             #FR = RecupVal(str_trame,str_trame.find("FR=")+3,str_trame.find(";FU")-3)
-            FU = RecupVal(str_trame,str_trame.find("FU=")+3,str_trame.find(";BU")-3)
+            #FU = RecupVal(str_trame,str_trame.find("FU=")+3,str_trame.find(";BU")-3)
             BU = RecupVal(str_trame,str_trame.find("BU=")+3,str_trame.find(";angle")-6)
             # Reccupération de l'angle du capteur boussole
             angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\r\n")-4)
