@@ -215,14 +215,14 @@ def LirePortSerie():
         str_trame = str(trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame :
-            # Reccupération de l'angle du capteur boussole
-            angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\r\n")-4)
             # Reccupération des informations des capteurs US
             FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM")-3)
             #FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR")-3)
             #FR = RecupVal(str_trame,str_trame.find("FR=")+3,str_trame.find(";FU")-3)
             #FU = RecupVal(str_trame,str_trame.find("FU=")+3,str_trame.find(";BU")-3)
             #BU = RecupVal(str_trame,str_trame.find("BU=")+3,str_trame.find(";angle")-6)
+            # Reccupération de l'angle du capteur boussole
+            angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\r\n")-4)
         # c'est une trame de niveau de batterie
         elif "batterie" in str_trame :
             print("batterie")
