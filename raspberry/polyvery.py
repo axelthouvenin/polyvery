@@ -51,13 +51,13 @@ def video_feed():
 
 # ----- Déclaration des fonctions de commandes des moteurs ----------
 #--- Cablage --------------------
-MOTORB_IN1 = 20 
-MOTORB_IN2 = 16 
-MOTORB_ENABLE = 21
+MOTORA_IN1 = 20 
+MOTORA_IN2 = 16 
+MOTORA_ENABLE = 21
 
-MOTORA_IN1 = 23 
-MOTORA_IN2 = 24 
-MOTORA_ENABLE = 18
+MOTORB_IN1 = 23 
+MOTORB_IN2 = 24 
+MOTORB_ENABLE = 18
 
 #--- Initialisation -------------
 GPIO.setmode(GPIO.BCM)
@@ -76,8 +76,8 @@ M2_Vitesse.start(50)
 
 # --- Controle du L298 --------------------------
 # Sens de rotation du moteur
-SENS_AVANT = 1
-SENS_ARRIERE = 2
+SENS_AVANT = 2
+SENS_ARRIERE = 1
 SENS_ARRET = 3
 
 def Desactiver():
