@@ -27,7 +27,7 @@ angle, FL, FM, FR, FU, BU, BM = 0, 0, 0, 0, 0, 0, 2
 commande = False
 
 # Déclaration de la pi_camera
-#pi_camera = VideoCamera(flip=False)
+pi_camera = VideoCamera(flip=False)
 
 # Création de l'application Flask
 app = Flask(__name__)
@@ -38,16 +38,16 @@ def index():
     return render_template('index.html') 
 
 # Configuration de la caméra
-#def gen(camera):
- #   while True:
-   #     frame = camera.get_frame()
-    #    yield (b'--frame\r\n'
-     #          b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 #Lancement du flux vidéo
-#@app.route('/video_feed')
-#def video_feed():
- #   return Response(gen(pi_camera),mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(pi_camera),mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # ----- Déclaration des fonctions de commandes des moteurs ----------
 #--- Cablage --------------------
@@ -217,7 +217,7 @@ def LirePortSerie():
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame :
             # Reccupération de l'angle du capteur boussole
-            angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\\r")-3)
+            angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\r\n")-4)
             # Reccupération des informations des capteurs US
             FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM")-3)
             FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR")-3)
