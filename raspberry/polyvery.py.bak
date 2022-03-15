@@ -51,13 +51,13 @@ def video_feed():
 
 # ----- Déclaration des fonctions de commandes des moteurs ----------
 #--- Cablage --------------------
-MOTORA_IN1 = 20 
-MOTORA_IN2 = 16 
-MOTORA_ENABLE = 21
+MOTORB_IN1 = 20 
+MOTORB_IN2 = 16 
+MOTORB_ENABLE = 21
 
-MOTORB_IN1 = 23 
-MOTORB_IN2 = 24 
-MOTORB_ENABLE = 18
+MOTORA_IN1 = 23 
+MOTORA_IN2 = 24 
+MOTORA_ENABLE = 18
 
 #--- Initialisation -------------
 GPIO.setmode(GPIO.BCM)
