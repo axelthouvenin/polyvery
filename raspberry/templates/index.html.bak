@@ -118,7 +118,7 @@
 					<div class="l2_button">
 						<input type="button" id="Droite" value = "Droite" />
 					</div>
-					<div class="l1_button">
+					<div class="l2_button">
 						<input type="button" id="Droite90" value = "Droite90" />
                     </div>
 					<div class="l3_button">
