@@ -71,8 +71,8 @@ GPIO.setup( MOTORB_ENABLE, GPIO.OUT )
 
 M1_Vitesse = GPIO.PWM(MOTORA_ENABLE, 100)
 M2_Vitesse = GPIO.PWM(MOTORB_ENABLE, 100)
-M1_Vitesse.start(50)
-M2_Vitesse.start(50)
+M1_Vitesse.start(25)
+M2_Vitesse.start(25)
 
 # --- Controle du L298 --------------------------
 # Sens de rotation du moteur

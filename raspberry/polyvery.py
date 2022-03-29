@@ -181,6 +181,7 @@ def Gauche90():
 # déplacement en cas d'obstacle rencontré (à refaire et valider)
 def EviterObstacle():
     while 1:
+        print("rien")
         commande = True
         # mur devant
         if FM == 1 :
