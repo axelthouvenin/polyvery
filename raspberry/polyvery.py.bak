@@ -216,6 +216,7 @@ def LirePortSerie():
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame :
             # Reccupération des informations des capteurs US
+            print(str_trame)
             FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM"))
             FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR"))
             FR = RecupVal(str_trame,str_trame.find("FR=")+3,str_trame.find(";FU"))
