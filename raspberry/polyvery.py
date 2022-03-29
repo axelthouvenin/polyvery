@@ -187,21 +187,21 @@ def EviterObstacle():
         if  FM == 1 :
             commande = False
             Reculer()
-            while FM == 1 and BM != 1 and BU !=-1:
+            while FM == 1 and BM != 1 and BU !=1:
                 pass
             Stop()
         # vide devant
-        elif FU == 2:
+        elif FU == 1:
             commande = False
             Reculer()
-            while FU == -1 and BM!=1 and BU !=-1:
+            while FU == -1 and BM!=1 and BU !=1:
                 pass
             Stop()
         #vide arriere
-        elif BU == 2:
+        elif BU == 1:
             commande = False
             Avancer()
-            while BU ==-1 and FM!=1 and FU !=-1:
+            while BU ==1 and FM!=1 and FU !=1:
                 pass
             Stop()
             
