@@ -181,28 +181,26 @@ def Gauche90():
 # déplacement en cas d'obstacle rencontré (à refaire et valider)
 def EviterObstacle():
     while 1:
-        print(FM)
-        commande = True
+        global commande = True
         # mur devant
-        if FM == 1 :
-            print("obstacle devant")
-            commande = False
+        if global FM == 1 :
+            global commande = False
             Reculer()
-            while FM == 1 and BM != 1 and BU !=-1:
+            while global FM == 1 and global BM != 1 and global BU !=-1:
                 pass
             Stop()
         # vide devant
-        elif FU == -1:
-            commande = False
+        elif global FU == -1:
+            global commande = False
             Reculer()
-            while FU == -1 and BM!=1 and BU !=-1:
+            while global FU == -1 and global BM!=1 and global BU !=-1:
                 pass
             Stop()
         #vide arriere
-        elif BU == -1:
-            commande = False
+        elif global BU == -1:
+            global commande = False
             Avancer()
-            while BU ==-1 and FM!=1 and FU !=-1:
+            while global BU ==-1 and global FM!=1 and global FU !=-1:
                 pass
             Stop()
             
@@ -218,13 +216,13 @@ def LirePortSerie():
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "FU" in str_trame and "BU" in str_trame :
             # Reccupération des informations des capteurs US
-            FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM"))
-            FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR"))
-            FR = RecupVal(str_trame,str_trame.find("FR=")+3,str_trame.find(";FU"))
-            FU = RecupVal(str_trame,str_trame.find("FU=")+3,str_trame.find(";BU"))
-            BU = RecupVal(str_trame,str_trame.find("BU=")+3,str_trame.find(";angle"))
+            global FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM"))
+            global FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR"))
+            global FR = RecupVal(str_trame,str_trame.find("FR=")+3,str_trame.find(";FU"))
+            global FU = RecupVal(str_trame,str_trame.find("FU=")+3,str_trame.find(";BU"))
+            global BU = RecupVal(str_trame,str_trame.find("BU=")+3,str_trame.find(";angle"))
             # Reccupération de l'angle du capteur boussole
-            angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\r\n")-4)
+            global angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\r\n")-4)
         # c'est une trame de niveau de batterie
         elif "batterie" in str_trame :
             print("batterie")
