@@ -1,6 +1,6 @@
 # Librairies pour le serveur web et la caméra
 from flask import Flask, render_template, Response, request
-#from camera import VideoCamera
+from camera import VideoCamera
 import time
 import threading
 import os
