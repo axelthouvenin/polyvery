@@ -184,6 +184,7 @@ def EviterObstacle():
         commande = True
         # mur devant
         if FM == 1 :
+            print("obstacle devant")
             commande = False
             Reculer()
             while FM == 1 and BM != 1 and BU !=-1:
