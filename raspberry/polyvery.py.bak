@@ -191,7 +191,7 @@ def EviterObstacle():
                 pass
             Stop()
         # vide devant
-        elif FU == -1:
+        elif FU == 2:
             print("vide devant")
             commande = False
             Reculer()
@@ -199,7 +199,7 @@ def EviterObstacle():
                 pass
             Stop()
         #vide arriere
-        elif BU == -1:
+        elif BU == 2:
         print("vide derriere")
             commande = False
             Avancer()
