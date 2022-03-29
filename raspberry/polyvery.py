@@ -116,7 +116,6 @@ def Avancer():
     MarcheMotorA( SENS_AVANT )
     MarcheMotorB( SENS_AVANT )
     Activer()
-    print("avancer")
     return "1"
 
 @app.route('/Reculer')
@@ -125,7 +124,6 @@ def Reculer():
 	MarcheMotorA( SENS_ARRIERE )
 	MarcheMotorB( SENS_ARRIERE )
 	Activer()
-	print("reculer")
 	return "1"
 
 @app.route('/Droite')
@@ -143,7 +141,6 @@ def Gauche():
 	MarcheMotorA( SENS_AVANT )
 	MarcheMotorB( SENS_ARRIERE )
 	Activer()
-	print("gauche")
 	return "1"
 		
 @app.route('/Stop')
@@ -152,7 +149,6 @@ def Stop():
 	MarcheMotorA( SENS_ARRET )
 	MarcheMotorB( SENS_ARRET )
 	Activer()
-	print("stop")
 	return "1"
 
 # 
@@ -187,21 +183,21 @@ def EviterObstacle():
         if  FM == 1 :
             commande = False
             Reculer()
-            while FM == 1 and BM != 1 and BU !=1:
+            while FM == 1 and BM != 1 and BU ==2:
                 pass
             Stop()
         # vide devant
         elif FU == 1:
             commande = False
             Reculer()
-            while FU == -1 and BM!=1 and BU !=1:
+            while FU == -1 and BM!=1 and BU ==2:
                 pass
             Stop()
         #vide arriere
         elif BU == 1:
             commande = False
             Avancer()
-            while BU ==1 and FM!=1 and FU !=1:
+            while BU ==1 and FM!=1 and FU ==2:
                 pass
             Stop()
             
