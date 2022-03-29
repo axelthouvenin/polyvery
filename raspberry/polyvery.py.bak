@@ -215,13 +215,10 @@ def LirePortSerie():
         str_trame = str(trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame :
-            print(str_trame)
             # Reccupération des informations des capteurs US
             #FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM")-3)
-            if "-" in str_trame[str_trame,str_trame.find("FM=")+3:str_trame.find(";FR")-3]:
-                FM = float(trame[str_trame,str_trame.find("FM=")+3+1:str_trame.find(";FR")-3])*-1
-            else:
-                FM = float(str_trame[str_trame,str_trame.find("FM=")+3:str_trame.find(";FR")-3])
+            print(str_trame.find("FM=")+3,str_trame.find(";FR")-3)
+            #FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR")-3)
             #FR = RecupVal(str_trame,str_trame.find("FR=")+3,str_trame.find(";FU")-3)
             #FU = RecupVal(str_trame,str_trame.find("FU=")+3,str_trame.find(";BU")-3)
             #BU = float(str_trame[str_trame.find("BU=")+3:str_trame.find(";angle")-6])
