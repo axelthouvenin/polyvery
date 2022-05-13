@@ -23,7 +23,7 @@ ser = serial.Serial(
 counter=0
 
 # Initialisation des variables des capteurs et de droit de pilotage par l'utilisateur
-angle, FL, FM, FR, FU, BU, BM = 0, 0, 0, 0, 0, 0, 2
+angle, FL, FM, FR, FU, BU, SL, SR = 0, 0, 0, 0, 0, 0, 0, 0
 commande = False
 
 # Déclaration de la pi_camera
@@ -71,8 +71,8 @@ GPIO.setup( MOTORB_ENABLE, GPIO.OUT )
 
 M1_Vitesse = GPIO.PWM(MOTORA_ENABLE, 100)
 M2_Vitesse = GPIO.PWM(MOTORB_ENABLE, 100)
-M1_Vitesse.start(25)
-M2_Vitesse.start(25)
+M1_Vitesse.start(30)
+M2_Vitesse.start(30)
 
 # --- Controle du L298 --------------------------
 # Sens de rotation du moteur
@@ -151,7 +151,7 @@ def Stop():
 	Activer()
 	return "1"
 
-# 
+# a refaire et valider
 @app.route('/Droite90')
 def Droite90():
     angle = LireAngle()
@@ -177,25 +177,27 @@ def Gauche90():
 # déplacement en cas d'obstacle rencontré (à refaire et valider)
 def EviterObstacle():
     while 1:
-        global commande, FL, FM, FR, FU, BU, angle
-        commande = True
+        global FL, FM, FR, FU, BU, angle
         # mur devant
         if  FM == 1 :
-            commande = False
             Reculer()
-            while FM == 1 and BM != 1 and BU ==2:
+            while FM == 1 and BU ==2:
+                pass
+            Stop()
+        # mur avant droite
+        if FR == 1 :
+            Reculer()
+            while FR ==1 and BU == 2:
                 pass
             Stop()
         # vide devant
         elif FU == 1:
-            commande = False
             Reculer()
-            while FU == -1 and BM!=1 and BU ==2:
+            while FU == -1 and BU ==2:
                 pass
             Stop()
         #vide arriere
         elif BU == 1:
-            commande = False
             Avancer()
             while BU ==1 and FM!=1 and FU ==2:
                 pass
@@ -212,6 +214,7 @@ def LirePortSerie():
         str_trame = str(trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "FU" in str_trame and "BU" in str_trame :
+            print(str_trame)
             # Reccupération des informations des capteurs US
             global FL, FM, FR, FU, BU, angle
             FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM"))
@@ -224,6 +227,9 @@ def LirePortSerie():
         # c'est une trame de niveau de batterie
         elif "batterie" in str_trame :
             print("batterie")
+        # c'est une trame d'ouverture du coffre
+        elif "coffre" in str_trame :
+            print("coffre")
         # c'est une trame inconnue ou erronée
         else:
             print("erreur trame reçue")
