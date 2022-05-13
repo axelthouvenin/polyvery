@@ -133,7 +133,7 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
 
   // Capteur côté gauche
   if(commande==0){
-    trame+= "SL=-1";
+    trame+= "SL=-1;";
   }
   else if(commande==1){
     if(dist_SL>15){
@@ -156,7 +156,7 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
   }
   else if(commande==2){
      if(dist_SL>25){
-       trame += "FR=3;";
+       trame += "SL=3;";
     }
     else if(dist_SL<=25){
       if(dist_SL==-1){
