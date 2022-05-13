@@ -13,7 +13,7 @@ import serial
 
 # Initialisation de la liaison série
 ser = serial.Serial(
- port='/dev/ttyACM0',
+ port='/dev/ttyACM1',
  baudrate = 19200,
  parity=serial.PARITY_NONE,
  stopbits=serial.STOPBITS_ONE,
@@ -71,8 +71,8 @@ GPIO.setup( MOTORB_ENABLE, GPIO.OUT )
 
 M1_Vitesse = GPIO.PWM(MOTORA_ENABLE, 100)
 M2_Vitesse = GPIO.PWM(MOTORB_ENABLE, 100)
-M1_Vitesse.start(30)
-M2_Vitesse.start(30)
+M1_Vitesse.start(45)
+M2_Vitesse.start(45)
 
 # --- Controle du L298 --------------------------
 # Sens de rotation du moteur
@@ -177,7 +177,7 @@ def Gauche90():
 # déplacement en cas d'obstacle rencontré (à refaire et valider)
 def EviterObstacle():
     while 1:
-        global FL, FM, FR, FU, BU, angle
+        global FL, FM, FR, FU, BU, SL, SR, angle
         # mur devant
         if  FM == 1 :
             Reculer()
@@ -219,7 +219,8 @@ def LirePortSerie():
             global FL, FM, FR, FU, BU, angle
             FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM"))
             FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR"))
-            FR = RecupVal(str_trame,str_trame.find("FR=")+3,str_trame.find(";FU"))
+            FR = RecupVal(str_trame,str_trame.find("FR=")+3,str_trame.find(";SL"))
+            SL = RecupVal(str_trame,str_trame.find("SL=")+3,str_trame.find(";FU"))
             FU = RecupVal(str_trame,str_trame.find("FU=")+3,str_trame.find(";BU"))
             BU = RecupVal(str_trame,str_trame.find("BU=")+3,str_trame.find(";angle"))
             # Reccupération de l'angle du capteur boussole
@@ -227,9 +228,6 @@ def LirePortSerie():
         # c'est une trame de niveau de batterie
         elif "batterie" in str_trame :
             print("batterie")
-        # c'est une trame d'ouverture du coffre
-        elif "coffre" in str_trame :
-            print("coffre")
         # c'est une trame inconnue ou erronée
         else:
             print("erreur trame reçue")
