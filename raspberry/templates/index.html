@@ -50,10 +50,6 @@
 		text-align:center;
     }
 	
-	.container {
-
-	}
-	
 	#panel des boutons
 	.container:first-child{
 	
@@ -64,16 +60,41 @@
 
 	}
 	
+
+	.video {
+		  display: block;
+		  margin-left: auto;
+		  margin-right: auto;
+		  width: 40%;
+		   position: relative;
+	}
+
+	.container {
+
+	}
+
 	.item {
-		width: 49%;
-		display: inline-block;
-		vertical-align: middle;
+
+	}
+
+	.l1_button{
+
 	}
 	
 	.l2_button{
-		padding: 10px;
-		display: inline-block;
-		vertical-align: middle;
+
+	}
+
+	.l3_button{
+		
+	}
+
+	.l4_button{
+	}
+
+	.button{
+		  position: absolute;
+		  top : 1;
 	}
 
 	
@@ -131,11 +152,12 @@
 	  <li><a href="#about">DECONNEXION</a></li>
 	</ul>
         <div class="container">
-            <div class="video">
-                <img src="{{ url_for('video_feed') }}" width="640" height="480">
-            </div>
+
                <div class="item">
-                <center>
+               		<div class="video">
+               	    	<img src="{{ url_for('video_feed') }}" width="640" height="480">
+               		</div>
+               	<div class="button">
                     <div class="l1_button">
                     	<i ttype="button" class="fa fa-arrow-circle-up" id="Avancer" style="font-size:48px;color:white" value = "Avancer"></i>
                     </div>
@@ -154,10 +176,10 @@
 					<div class="l4_button">
 						<i type="button" class="fa fa-angle-double-right" id="Droite90" style="font-size:48px;color:white" value = "Droite90" > </i>
                     </div>
-					<div class="l3_button">
+					<div class="l2_button">
 						<i type="button" class="fa fa-arrow-circle-down" id="Reculer" style="font-size:48px;color:white" value = "Reculer" ></i>
-                    </div>            
-                </center>
+                    </div>  
+                </div>           
             </div>
         </div>
 	<!-- <div id="bouton_msg_cov">
