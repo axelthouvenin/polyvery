@@ -3,6 +3,7 @@
 #include <I2Cdev.h>
 #include <HMC5883L.h>
 #include <math.h>
+#include <Servo.h>
 
 // Initialisation des pins des capteurs (trig pin, echo pin)
 UltraSonicDistanceSensor CU_Front_Mid(51,50);  
@@ -12,10 +13,14 @@ UltraSonicDistanceSensor CU_Front_Under(47,46);
 UltraSonicDistanceSensor CU_Back_Under(53,52);
 UltraSonicDistanceSensor CU_Side_Left(44,43);
 UltraSonicDistanceSensor CU_Side_Right(33,32);
+// Initialisation des pins des servo moteurs
+Servo servoGauche;
+Servo servoDroite;
 
 // Variables pour les capteurs Ultra Son
 // F pour FRONT; L pour LEFT; M pour MIDDLE; R pour RIGHT
-int dist_FL, dist_FM, dist_FR, dist_FU, dist_BU, dist_SL, dist_SR;
+// commande représente le déplacement en cour : 0 = auncun, 1 = reculer, 2 = tous les autres
+int dist_FL, dist_FM, dist_FR, dist_FU, dist_BU, dist_SL, dist_SR, commande = 0;
 
 // Variables pour le capteur boussole HMC5883L
 HMC5883L capteur;
@@ -24,14 +29,16 @@ int16_t mx, my, mz;
 float angle;
 
 void setup () {
-   // initialisation de la liaison série I2C
+  // Initialisation de la liaison série I2C
   Wire.begin();
   // Initialisation de la liaison série
   Serial.begin(19200);  
   while (!Serial) {
   }
-
-   // initialisation du capteur HMC5883L
+  // Initialisation des servo moteurs
+  servoGauche.attach(2);
+  servoDroite.attach(3);
+  // Initialisation du capteur HMC5883L
   //capteur.initialize();
   delay(1000);
   /*while (!capteur.testConnection()) {
@@ -58,6 +65,9 @@ void loop () {
   envoi_mesures(dist_FL,dist_FM,dist_FR,dist_FU,dist_BU,dist_SL,dist_SR,0);
   // Délais, 10 microsecondes est le min des capteurs US
   delay(100);
+  servoDroite.write(37);
+  //servoDroite.write(37+90);
+  //servoGauche.write(150);
 }
 
 
@@ -120,6 +130,50 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
   else{
     trame += "FR=0;";
   }
+
+  // Capteur côté gauche
+  if(commande==0){
+    trame+= "SL=-1";
+  }
+  else if(commande==1){
+    if(dist_SL>15){
+       trame += "FR=3;";
+    }
+    else if(dist_SL<=15){
+      if(dist_SL==-1){
+        trame += "SL=-1;";
+      }
+      else if(dist_SL<10){
+        trame += "SL=1;";
+      }
+      else{
+        trame += "SL=2;";
+      }
+    }
+    else{
+      trame += "SL=0;";
+    }
+  }
+  else if(commande==2){
+     if(dist_SL>25){
+       trame += "FR=3;";
+    }
+    else if(dist_SL<=25){
+      if(dist_SL==-1){
+        trame += "SL=-1;";
+      }
+      else if(dist_SL<10){
+        trame += "SL=1;";
+      }
+      else{
+        trame += "SL=2;";
+      }
+    }
+    else{
+      trame += "SL=0;";
+    }
+  }
+   
   
   // Capteur avant sol
   if(dist_FU>5){
