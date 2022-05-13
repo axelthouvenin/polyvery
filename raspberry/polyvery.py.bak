@@ -13,7 +13,7 @@ import serial
 
 # Initialisation de la liaison série
 ser = serial.Serial(
- port='/dev/ttyACM1',
+ port='/dev/ttyACM0',
  baudrate = 19200,
  parity=serial.PARITY_NONE,
  stopbits=serial.STOPBITS_ONE,
@@ -24,7 +24,7 @@ counter=0
 
 # Initialisation des variables des capteurs et de droit de pilotage par l'utilisateur
 angle, FL, FM, FR, FU, BU, SL, SR = 0, 0, 0, 0, 0, 0, 0, 0
-commande = False
+commande = 0
 
 # Déclaration de la pi_camera
 pi_camera = VideoCamera(flip=False)

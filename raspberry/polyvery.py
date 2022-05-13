@@ -22,9 +22,10 @@ ser = serial.Serial(
 )
 counter=0
 
-# Initialisation des variables des capteurs et de droit de pilotage par l'utilisateur
+# Initialisation des variables des capteurs
 angle, FL, FM, FR, FU, BU, SL, SR = 0, 0, 0, 0, 0, 0, 0, 0
-commande = False
+# Variable envoyée à l'arduino pour l'informer du déplacement en cours
+commande = 0
 
 # Déclaration de la pi_camera
 pi_camera = VideoCamera(flip=False)
@@ -211,12 +212,14 @@ def EviterObstacle():
 def LirePortSerie():
     while 1:
         trame=ser.readline()
+        global commande
+        ser.write("b'commande="+commande+";'")
         str_trame = str(trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "FU" in str_trame and "BU" in str_trame :
             print(str_trame)
             # Reccupération des informations des capteurs US
-            global FL, FM, FR, FU, BU, angle
+            global FL, FM, FR, FU, BU, SL, angle
             FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM"))
             FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR"))
             FR = RecupVal(str_trame,str_trame.find("FR=")+3,str_trame.find(";SL"))
