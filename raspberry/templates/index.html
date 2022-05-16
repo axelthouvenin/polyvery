@@ -36,68 +36,20 @@
         background-repeat:no-repeat;
 		margin:0;
 		padding:0;
-
-
     }
 
 	.title{
 		background-color:white;
 		opacity:50%;
 	}
-	
-    h1{
-        color : blue;
-		text-align:center;
-    }
-	
-	#panel des boutons
-	.container:first-child{
-	
-	}
-	
-	#affichage de la caméra
-	.container:nth-child(2){
-
-	}
-	
-
-	.video {
-		  display: block;
-		  margin-left: auto;
-		  margin-right: auto;
-		  width: 40%;
-		   position: relative;
-	}
 
 	.container {
-
-	}
-
-	.item {
-
-	}
-
-	.l1_button{
-
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
 	}
 	
-	.l2_button{
 
-	}
-
-	.l3_button{
-		
-	}
-
-	.l4_button{
-	}
-
-	.button{
-		  position: absolute;
-		  top : 1;
-	}
-
-	
 	input{
 		background: #0066A2;
 		color: white;
@@ -152,35 +104,28 @@
 	  <li><a href="#about">DECONNEXION</a></li>
 	</ul>
         <div class="container">
-
-               <div class="item">
-               		<div class="video">
-               	    	<img src="{{ url_for('video_feed') }}" width="640" height="480">
-               		</div>
-               	<div class="button">
+			<div class="left_buttons">
                     <div class="l1_button">
-                    	<i ttype="button" class="fa fa-arrow-circle-up" id="Avancer" style="font-size:48px;color:white" value = "Avancer"></i>
-                    </div>
-					<div class="l4_button">
-						<i type="button" class="fa fa-angle-double-left" id="Gauche90" style="font-size:48px;color:white" value = "Gauche90"></i>
+                    	<i type="button" class="fa fa-arrow-circle-up" id="Avancer" style="font-size:48px;color:white" value = "Avancer"></i>
                     </div>
                     <div class="l2_button">
                     	<i type="button" class="fa fa-arrow-circle-left" id="Gauche" style="font-size:48px;color:white" value = "Gauche"></i>
-                    </div>
-					<div class="l2_button">
 						<i type="button" class="fa fa-arrows-alt" id="Stop" style="font-size:48px;color:white" value = "Stop"></i>
-					</div>
-					<div class="l2_button">
                     	<i type="button" class="fa fa-arrow-circle-right" id="Droite" style="font-size:48px;color:white" value = "Droite" > </i>						
 					</div>
-					<div class="l4_button">
-						<i type="button" class="fa fa-angle-double-right" id="Droite90" style="font-size:48px;color:white" value = "Droite90" > </i>
-                    </div>
-					<div class="l2_button">
+					<div class="l3_button">
 						<i type="button" class="fa fa-arrow-circle-down" id="Reculer" style="font-size:48px;color:white" value = "Reculer" ></i>
                     </div>  
-                </div>           
-            </div>
+            </div>  
+            <div class="video">
+                 <img src="{{ url_for('video_feed') }}" width="640" height="480">
+			</div> 	
+			<div class="right_buttons">
+				<div class="l2_button">
+					<i type="button" class="fa fa-angle-double-left" id="Gauche90" style="font-size:48px;color:white" value = "Gauche90"></i>
+					<i type="button" class="fa fa-angle-double-right" id="Droite90" style="font-size:48px;color:white" value = "Droite90" > </i>
+                </div> 	
+			</div>
         </div>
 	<!-- <div id="bouton_msg_cov">
 	    <audio id="play" src="https://www.dropbox.com/s/dbmhppt90hln50f/message_polyvery.mp3?dl=1"></audio>
