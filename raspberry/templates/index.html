@@ -36,7 +36,6 @@
         background-repeat:no-repeat;
 		margin:0;
 		padding:0;
-		background-color: grey;
     }
 
 	.title{
@@ -48,12 +47,20 @@
 		display: flex;
 		align-items: flex-start;
 		justify-content: space-between;
-		background-color: black;
+		border : solid;
+		border-color: grey;
+
 	}
+
+	div.video{
+		text-align: center;
+		padding-bottom: 10px;
+	}
+
+
 
 	div.left_buttons{
 		vertical-align: middle;
-  		background-color: blue;
   		margin-left: auto;
   		margin-right: auto;
   		margin-top:  auto;
@@ -65,11 +72,9 @@
   		margin-right: auto;
   		margin-top:  auto;
   		margin-bottom: auto;
-		background-color: orange;
 	}
 
 	div.l1_button{
-		background-color: green;
 		display: flex;
 		justify-content: center;
 	}
@@ -79,7 +84,6 @@
 	}
 	
 	div.l3_button{
-		background-color: yellow;
 		display: flex;
 		justify-content: center;
 	}
@@ -111,6 +115,13 @@
 		overflow: hidden;
 		background-color: #333;
 	}
+
+	h1{
+		font: bold 20px arial, sans-serif;
+		overflow: hidden;
+		color: #fff;
+
+	}
 	
 	li {
 	  float: left;
@@ -128,6 +139,13 @@
 	  background-color: #111;
 	}
 
+	div.log{
+		background-color: red;
+		margin-bottom: 0px;
+	}
+
+
+
 </style>
 
     <body>
@@ -140,24 +158,25 @@
         <div class="container">
 			<div class="left_buttons">
                     <div class="l1_button">
-                    	<i type="button" class="fa fa-arrow-circle-up" id="Avancer" style="font-size:48px;color:white" value = "Avancer"></i>
+                    	<i type="button" class="fa fa-arrow-circle-up" id="Avancer" style="font-size:56px;color:white" value = "Avancer"></i>
                     </div>
                     <div class="l2_button">
-                    	<i type="button" class="fa fa-arrow-circle-left" id="Gauche" style="font-size:48px;color:white" value = "Gauche"></i>
-						<i type="button" class="fa fa-arrows-alt" id="Stop" style="font-size:48px;color:white" value = "Stop"></i>
-                    	<i type="button" class="fa fa-arrow-circle-right" id="Droite" style="font-size:48px;color:white" value = "Droite" > </i>						
+                    	<i type="button" class="fa fa-arrow-circle-left" id="Gauche" style="font-size:56px;color:white" value = "Gauche"></i>
+						<i type="button" class="fa fa-arrows-alt" id="Stop" style="font-size:56px ; padding: 10px; color:white" value = "Stop"></i>
+                    	<i type="button" class="fa fa-arrow-circle-right" id="Droite" style="font-size:56px;color:white" value = "Droite" > </i>						
 					</div>
 					<div class="l3_button">
-						<i type="button" class="fa fa-arrow-circle-down" id="Reculer" style="font-size:48px;color:white" value = "Reculer" ></i>
+						<i type="button" class="fa fa-arrow-circle-down" id="Reculer" style="font-size:56px;color:white" value = "Reculer" ></i>
                     </div>  
             </div>  
             <div class="video">
+            		<h1>CAMÉRA ROBOT</h1>
                  <img src="{{ url_for('video_feed') }}" width="640" height="480">
 			</div> 	
 			<div class="right_buttons">
 				<div class="l2_button">
-					<i type="button" class="fa fa-angle-double-left" id="Gauche90" style="font-size:48px;color:white" value = "Gauche90"></i>
-					<i type="button" class="fa fa-angle-double-right" id="Droite90" style="font-size:48px;color:white" value = "Droite90" > </i>
+					<i type="button" class="fa fa-angle-double-left" id="Gauche90" style="font-size:66px ; padding: 30px; color:white" value = "Gauche90" ></i>
+					<i type="button" class="fa fa-angle-double-right" id="Droite90" style="font-size:66px;color:white" value = "Droite90" > </i>
                 </div> 	
 			</div>
         </div>
@@ -166,5 +185,7 @@
 	    <button onclick="playSound()">Play</button>
     	    <script>function playSound () {document.getElementById('play').play();}</script>
 	</div>-->
+	<div class="log">
+	</div>
     </body>
 </html>
