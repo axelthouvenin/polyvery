@@ -25,11 +25,9 @@
     <body>
 		<h1>Connexion au robot Polyvery</h1>
 		<form>
-			<center>
-				<p>Mot de passe :</p>
-				<input type="password" name="password"><br>
-				<input type="submit">
-			</center>
+			<p>Mot de passe :</p>
+			<input type="password" name="password"><br>
+			<input type="submit">
 		</form>
 		
     </body>
