@@ -244,7 +244,7 @@ def LirePortSerie():
     while 1:
         trame=ser.readline()
         global commande
-        ser.write("b'commande="+str(commande)+";'")  
+        #ser.write("b'commande="+str(commande)+";'")  
         str_trame = str(trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "FU" in str_trame and "BU" in str_trame :
@@ -259,6 +259,7 @@ def LirePortSerie():
             BU = RecupVal(str_trame,str_trame.find("BU=")+3,str_trame.find(";angle"))
             # Reccupération de l'angle du capteur boussole
             angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\r\n")-4)
+            print(angle)
         # c'est une trame de niveau de batterie
         elif "batterie" in str_trame :
             print("batterie")
