@@ -199,6 +199,8 @@ def DemiTour():
 @app.route('/Immobile')
 def Immobile():
     global autorisation_mouvement
+    if autorisation_mouvement == True:
+        Stop()
     autorisation_mouvement = not autorisation_mouvement
     if autorisation_mouvement==True:
         print("Le robot peut se déplacer")
@@ -259,7 +261,6 @@ def LirePortSerie():
             BU = RecupVal(str_trame,str_trame.find("BU=")+3,str_trame.find(";angle"))
             # Reccupération de l'angle du capteur boussole
             angle = RecupVal(str_trame,str_trame.find("angle=")+6,str_trame.find("\r\n")-4)
-            print(angle)
         # c'est une trame de niveau de batterie
         elif "batterie" in str_trame :
             print("batterie")
