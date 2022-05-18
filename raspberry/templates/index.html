@@ -25,6 +25,9 @@
 		
 		$(function() { $("#Stop").click(function (event) { $.getJSON('/Stop', { },
     	function(data) { }); return false; }); });
+
+    	$(function() { $("#Immobile").click(function (event) { $.getJSON('/Immobile', { },
+    	function(data) { }); return false; }); });
 		
 		function playSound () {document.getElementById('play').play();}
 		</script>
@@ -66,6 +69,11 @@
   		margin-top:  auto;
   		margin-bottom: auto;
 	}
+
+	div.bottom_buttons{
+	  	text-align: center;
+	}
+
 
 	div.right_buttons{
   		margin-left: auto;
@@ -139,12 +147,6 @@
 	  background-color: #111;
 	}
 
-	div.log{
-		background-color: red;
-		margin-bottom: 0px;
-	}
-
-
 
 </style>
 
@@ -185,7 +187,9 @@
 	    <button onclick="playSound()">Play</button>
     	    <script>function playSound () {document.getElementById('play').play();}</script>
 	</div>-->
-	<div class="log">
-	</div>
+			<div class="bottom_buttons">
+				<i type="button" class="fa fa-play" id="Immobile" style="font-size:66px;color:white" value = "Immobile"></i>
+			</div>
+		</div>
     </body>
 </html>
