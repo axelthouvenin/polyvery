@@ -26,6 +26,8 @@ counter=0
 angle, FL, FM, FR, FU, BU, SL, SR = 0, 0, 0, 0, 0, 0, 0, 0
 # Variable envoyée à l'arduino pour l'informer du déplacement en cours
 commande = 0
+# Variable d'autorisation pour que le robot effectue des déplacements( de base à false)
+autorisation_mouvement = False 
 
 # Déclaration de la pi_camera
 pi_camera = VideoCamera(flip=False)
@@ -111,69 +113,98 @@ def MarcheMotorB( sens ):
 		GPIO.output( MOTORB_IN1, GPIO.LOW )
 		GPIO.output( MOTORB_IN2, GPIO.LOW ) 
 
+#---- Fonctions de pilotage et d'autorisation des déplacements
 @app.route('/Avancer')
 def Avancer():
-    Desactiver()
-    MarcheMotorA( SENS_AVANT )
-    MarcheMotorB( SENS_AVANT )
-    Activer()
-    return "1"
+    global autorisation_mouvement
+    if autorisation_mouvement == True:
+        Desactiver()
+        MarcheMotorA( SENS_AVANT )
+        MarcheMotorB( SENS_AVANT )
+        Activer()
+        return "1"
 
 @app.route('/Reculer')
 def Reculer():
-	Desactiver()
-	MarcheMotorA( SENS_ARRIERE )
-	MarcheMotorB( SENS_ARRIERE )
-	Activer()
-	return "1"
+    global autorisation_mouvement
+    if autorisation_mouvement == True:
+        Desactiver()
+        MarcheMotorA( SENS_ARRIERE )
+        MarcheMotorB( SENS_ARRIERE )
+        Activer()
+        return "1"
 
 @app.route('/Droite')
 def Droite():
-	Desactiver()
-	MarcheMotorA( SENS_ARRIERE )
-	MarcheMotorB( SENS_AVANT )
-	Activer()
-	print("droite")
-	return "1"
+    global autorisation_mouvement
+    if autorisation_mouvement == True:
+        Desactiver()
+        MarcheMotorA( SENS_ARRIERE )
+        MarcheMotorB( SENS_AVANT )
+        Activer()
+        print("droite")
+        return "1"
 
 @app.route('/Gauche')
 def Gauche():
-	Desactiver()
-	MarcheMotorA( SENS_AVANT )
-	MarcheMotorB( SENS_ARRIERE )
-	Activer()
-	return "1"
+    global autorisation_mouvement
+    if autorisation_mouvement == True:
+        Desactiver()
+        MarcheMotorA( SENS_AVANT )
+        MarcheMotorB( SENS_ARRIERE )
+        Activer()
+        return "1"
 		
 @app.route('/Stop')
 def Stop():
-	Desactiver()
-	MarcheMotorA( SENS_ARRET )
-	MarcheMotorB( SENS_ARRET )
-	Activer()
-	return "1"
+    global autorisation_mouvement
+    if autorisation_mouvement == True:
+        Desactiver()
+        MarcheMotorA( SENS_ARRET )
+        MarcheMotorB( SENS_ARRET )
+        Activer()
+        return "1"
 
 # a refaire et valider
 @app.route('/Droite90')
 def Droite90():
-    angle = LireAngle()
-    cible = angle - 90
-    Droite()
-    while angle> cible:
+    global autorisation_mouvement
+    if autorisation_mouvement == True:
         angle = LireAngle()
-    print("droite90")
-    return "1"
+        cible = angle - 90
+        Droite()
+        while angle> cible:
+            angle = LireAngle()
+        print("droite90")
+        return "1"
 
 # à refaire et valider
 @app.route('/Gauche90')
 def Gauche90():
-    angle = LireAngle()
-    cible = angle + 90
-    Gauche()
-    while angle < cible:
+    global autorisation_mouvement
+    if autorisation_mouvement == True:
         angle = LireAngle()
-    print("gauche90")
+        cible = angle + 90
+        Gauche()
+        while angle < cible:
+            angle = LireAngle()
+        print("gauche90")
+        return "1"
+        
+# à refaire et valider
+@app.route('/DemiTour')
+def DemiTour():
     return "1"
 
+@app.route('/Immobile')
+def Immobile():
+    global autorisation_mouvement
+    autorisation_mouvement = not autorisation_mouvement
+    if autorisation_mouvement==True:
+        print("Le robot peut se déplacer")
+    else:
+        print("Le robot ne peut pas se déplacer")
+    return "1"
 
 # déplacement en cas d'obstacle rencontré (à refaire et valider)
 def EviterObstacle():
@@ -213,7 +244,7 @@ def LirePortSerie():
     while 1:
         trame=ser.readline()
         global commande
-        ser.write("b'commande="+commande+";'")
+        ser.write("b'commande="+str(commande)+";'")  
         str_trame = str(trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "FU" in str_trame and "BU" in str_trame :
