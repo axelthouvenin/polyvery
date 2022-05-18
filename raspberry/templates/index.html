@@ -13,6 +13,9 @@
 		
 		$(function() { $("#Droite90").click(function (event) { $.getJSON('/Droite90', { },
     	function(data) { }); return false; }); });
+
+    	$(function() { $("#Droite180").click(function (event) { $.getJSON('/Droite180', { },
+    	function(data) { }); return false; }); });
 		
 		$(function() { $("#Reculer").click(function (event) { $.getJSON('/Reculer', { },
     	function(data) { }); return false; }); }); 
@@ -179,6 +182,7 @@
 				<div class="l2_button">
 					<i type="button" class="fa fa-angle-double-left" id="Gauche90" style="font-size:66px ; padding: 30px; color:white" value = "Gauche90" ></i>
 					<i type="button" class="fa fa-angle-double-right" id="Droite90" style="font-size:66px;color:white" value = "Droite90" > </i>
+					<i type="button" class="fa fa-repeat" id="Droite180" style="font-size:56px; padding: 10px;color:white" value = "Droite180" > </i>
                 </div> 	
 			</div>
         </div>
@@ -188,7 +192,7 @@
     	    <script>function playSound () {document.getElementById('play').play();}</script>
 	</div>-->
 			<div class="bottom_buttons">
-				<i type="button" class="fa fa-play" id="Immobile" style="font-size:66px;color:white" value = "Immobile"></i>
+				<i type="button" class="fa fa-play" id="Immobile" style="font-size:56px;color:white" value = "Immobile"></i>
 			</div>
 		</div>
     </body>
