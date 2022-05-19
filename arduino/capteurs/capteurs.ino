@@ -39,12 +39,12 @@ void setup () {
   servoGauche.attach(2);
   servoDroite.attach(3);
   // Initialisation du capteur HMC5883L
-  //capteur.initialize();
+  capteur.initialize();
   delay(1000);
-  /*while (!capteur.testConnection()) {
+  while (!capteur.testConnection()) {
     Serial.println("erreur connexion capteur HMC5883L..");
     delay(500);
-  }*/
+  }
 }
 
 void loop () {
@@ -58,11 +58,11 @@ void loop () {
   dist_SR = CU_Side_Right.measureDistanceCm();
   
   // lire les données sur les axes x,y,z du champs magnétique
-  //capteur.getHeading(&mx, &my, &mz);
+  capteur.getHeading(&mx, &my, &mz);
   // calcul de l'angle en degrés par rapport au nord
-  //angle = atan2((double)mx, (double)my);
-  //angle = angle * 180 / PI;
-  envoi_mesures(dist_FL,dist_FM,dist_FR,dist_FU,dist_BU,dist_SL,dist_SR,0);
+  angle = atan2((double)mx, (double)my);
+  angle = angle * 180 / PI;
+  envoi_mesures(dist_FL,dist_FM,dist_FR,dist_FU,dist_BU,dist_SL,dist_SR,angle);
   // Délais, 10 microsecondes est le min des capteurs US
   delay(100);
   servoDroite.write(37);
