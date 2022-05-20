@@ -179,7 +179,6 @@ def Droite90():
         while angle> cible:
             pass
         Stop()
-        print("droite90")
         return "1"
 
 # à refaire et valider
@@ -196,7 +195,6 @@ def Gauche90():
         while angle < cible:
             pass
         Stop()
-        print("gauche90")
         return "1"
         
 # à refaire et valider
@@ -211,7 +209,6 @@ def DemiTour():
         while angle < cible:
             pass
         Stop()
-        print("gauche90")
         return "1"
 
 @app.route('/Immobile')
@@ -268,7 +265,6 @@ def LirePortSerie():
         str_trame = str(trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "FU" in str_trame and "BU" in str_trame :
-            print(str_trame)
             # Reccupération des informations des capteurs US
             global FL, FM, FR, FU, BU, SL, angle
             FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM"))

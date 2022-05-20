@@ -172,11 +172,12 @@ def Droite90():
     M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
-        angle = LireAngle()
         cible = angle - 90
+        if cible <= -180 :
+            cible = cible + 360
         Droite()
         while angle> cible:
-            angle = LireAngle()
+            pass
         Stop()
         print("droite90")
         return "1"
@@ -188,11 +189,12 @@ def Gauche90():
     M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
-        angle = LireAngle()
         cible = angle + 90
+        if cible >= 180 :
+            cible = cible - 360
         Gauche()
         while angle < cible:
-            angle = LireAngle()
+            pass
         Stop()
         print("gauche90")
         return "1"
@@ -204,11 +206,10 @@ def DemiTour():
     M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
-        angle = LireAngle()
         cible = angle + 180
         Droite()
         while angle < cible:
-            angle = LireAngle()
+            pass
         Stop()
         print("gauche90")
         return "1"
