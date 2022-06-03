@@ -42,12 +42,13 @@ app.config['SECRET_KEY'] = 'df0331cefc6c2b2a5d0208a726a5d1c0fd38324feba25506'
 # Méthode de test du mot de passe pour renvoyer vers la page d'acceuil ou de login
 @app.route('/', methods=('GET', 'POST'))
 def login():
+    global utilisateur
     if request.method == 'POST':
         password = request.form['password']
         print(password)
         if password == "1234":
-            if global utilisateur == False:
-                global utilisateur = True;
+            if utilisateur == False:
+                utilisateur = True;
                 return render_template('accueil.html')    
             else :
                 return render_template('login.html',message="Une personne est déjà connectée au robot")

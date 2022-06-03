@@ -28,6 +28,8 @@ angle, FL, FM, FR, FU, BU, SL, SR = 0, 0, 0, 0, 0, 0, 0, 0
 commande = 0
 # Variable d'autorisation pour que le robot effectue des déplacements( de base à false)
 autorisation_mouvement = False 
+#Variable pour savoir si une personne est connectée au site (de base à false)
+utilisateur = False;
 
 # Déclaration de la pi_camera
 pi_camera = VideoCamera(flip=False)
@@ -36,20 +38,25 @@ pi_camera = VideoCamera(flip=False)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'df0331cefc6c2b2a5d0208a726a5d1c0fd38324feba25506'
 
-# Réccupération des pages HTML du site
-
-    
-# Méthode de test du mot de passe pour renvoyer vers la page d'acceuil
+# Réccupération des pages HTML du site ------------------------------
+# Méthode de test du mot de passe pour renvoyer vers la page d'acceuil ou de login
 @app.route('/', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         password = request.form['password']
         print(password)
-        if password == "1234" :
-            print("succes mdp")
-            return render_template('accueil.html')
+        if password == "1234":
+            if global utilisateur == False:
+                global utilisateur = True;
+                return render_template('accueil.html')    
+            else :
+                return render_template('login.html',message="Une personne est déjà connectée au robot")
+            
     return render_template('login.html')
+ 
 
+
+#------------------------------------------------------------------------------
 # Configuration de la caméra
 def gen(camera):
     while True:
