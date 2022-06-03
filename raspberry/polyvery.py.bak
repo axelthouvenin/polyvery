@@ -54,6 +54,8 @@ def login():
                 return render_template('login.html',message="Une personne est déjà connectée au robot")
         else:
             return render_template('login.html',message="Mot de passe incorect")
+    if request.method =='GET':
+        return render_template('login.html')
     return render_template('login.html')
  
 # Méthode pour se déconnecter du site
@@ -61,22 +63,7 @@ def login():
 def logout():
     global utilisateur
     utilisateur == False
-    return redirect(url_for('login'))
-
-# Méthodes pour renvoyer vers la page d'acceuil
-@app.route('/Accueil')
-def accueil():
-    return render_template('acceuil.html')
-    
-# Méthodes pour renvoyer vers la page de pilotage du robot
-@app.route('/Pilotage')
-def pilotage():
-    return render_template('pilotage.html')
-    
-# Méthodes pour renvoyer vers la page d'ouverture du coffre
-@app.route('/Coffre')
-def coffre():
-    return render_template('coffre.html')    
+    return redirect(url_for('login')) 
 
 
 #------------------------------------------------------------------------------

@@ -40,7 +40,7 @@ app.config['SECRET_KEY'] = 'df0331cefc6c2b2a5d0208a726a5d1c0fd38324feba25506'
 
 # Réccupération des pages HTML du site ------------------------------
 # Méthode de test du mot de passe pour renvoyer vers la page d'acceuil ou de login
-@app.route('/', methods=('GET', 'POST'))
+@app.route('/', methods=('GET', 'POST','test'))
 def login():
     global utilisateur
     if request.method == 'POST':
@@ -54,7 +54,7 @@ def login():
                 return render_template('login.html',message="Une personne est déjà connectée au robot")
         else:
             return render_template('login.html',message="Mot de passe incorect")
-    if request.method =='GET':
+    if request.method =='test':
         return render_template('login.html')
     return render_template('login.html')
  

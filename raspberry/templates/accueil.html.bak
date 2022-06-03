@@ -120,6 +120,7 @@
 	  <li><input type="button" id="Coffre" value = "OUVERTURE COFFRE"></li>
 	  <li><input type="button" id="Pilotage" value = "PILOTAGE ROBOT "></li>
 	  <li><button id="Logout" value = "DECONNEXION"></li>
+	  <form method="GET"><div class="envoi"><input type="submit"></form>
 	</ul>
     </body>
 </html>
