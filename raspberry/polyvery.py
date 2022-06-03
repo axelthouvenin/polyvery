@@ -168,33 +168,48 @@ def Stop():
 # a refaire et valider
 @app.route('/Droite90')
 def Droite90():
+    M1_Vitesse.start(20)
+    M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
-        angle = LireAngle()
         cible = angle - 90
+        if cible <= -180 :
+            cible = cible + 360
         Droite()
         while angle> cible:
-            angle = LireAngle()
-        print("droite90")
+            pass
+        Stop()
         return "1"
 
 # à refaire et valider
 @app.route('/Gauche90')
 def Gauche90():
+    M1_Vitesse.start(20)
+    M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
-        angle = LireAngle()
         cible = angle + 90
+        if cible >= 180 :
+            cible = cible - 360
         Gauche()
         while angle < cible:
-            angle = LireAngle()
-        print("gauche90")
+            pass
+        Stop()
         return "1"
         
 # à refaire et valider
 @app.route('/DemiTour')
 def DemiTour():
-    return "1"
+    M1_Vitesse.start(20)
+    M2_Vitesse.start(20)
+    global autorisation_mouvement
+    if autorisation_mouvement == True:
+        cible = angle + 180
+        Droite()
+        while angle < cible:
+            pass
+        Stop()
+        return "1"
 
 @app.route('/Immobile')
 def Immobile():
@@ -250,7 +265,6 @@ def LirePortSerie():
         str_trame = str(trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "FU" in str_trame and "BU" in str_trame :
-            print(str_trame)
             # Reccupération des informations des capteurs US
             global FL, FM, FR, FU, BU, SL, angle
             FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM"))
