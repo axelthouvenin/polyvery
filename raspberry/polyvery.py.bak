@@ -37,27 +37,18 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'df0331cefc6c2b2a5d0208a726a5d1c0fd38324feba25506'
 
 # Réccupération des pages HTML du site
-@app.route('/')
-def index():
-    return render_template('login.html') 
+
     
-<<<<<<< Updated upstream
 # Méthode de test du mot de passe pour renvoyer vers la page d'acceuil
-@app.route('/login/', methods=('GET', 'POST'))
+@app.route('/', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         password = request.form['password']
         print(password)
-        if not password:
-            flash('Mot de passe requis !')
-        elif password== 1234 :
+        if password == "1234" :
+            print("succes mdp")
             return render_template('accueil.html')
     return render_template('login.html')
-=======
-@app.route('/login/', methods=('GET', 'POST'))
-def create():
-    return render_template('acceuil.html')
->>>>>>> Stashed changes
 
 # Configuration de la caméra
 def gen(camera):
