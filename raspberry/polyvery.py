@@ -41,6 +41,7 @@ app.config['SECRET_KEY'] = 'df0331cefc6c2b2a5d0208a726a5d1c0fd38324feba25506'
 def index():
     return render_template('login.html') 
     
+<<<<<<< Updated upstream
 # Méthode de test du mot de passe pour renvoyer vers la page d'acceuil
 @app.route('/login/', methods=('GET', 'POST'))
 def login():
@@ -52,6 +53,11 @@ def login():
         elif password== 1234 :
             return render_template('accueil.html')
     return render_template('login.html')
+=======
+@app.route('/login/', methods=('GET', 'POST'))
+def create():
+    return render_template('acceuil.html')
+>>>>>>> Stashed changes
 
 # Configuration de la caméra
 def gen(camera):
