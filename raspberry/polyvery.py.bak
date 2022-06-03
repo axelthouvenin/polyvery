@@ -1,5 +1,5 @@
 # Librairies pour le serveur web et la caméra
-from flask import Flask, render_template, Response, request
+from flask import Flask, render_template, Response, request, url_for, flash, redirect
 from camera import VideoCamera
 import time
 import threading
@@ -65,8 +65,18 @@ def logout():
 
 # Méthode pour renvoyer vers la page d'acceuil
 @app.route('/Accueil')
-def Accueil():
+def accueil():
     return render_template('acceuil.html')
+    
+# Méthode pour renvoyer vers la page de pilotage du robot
+@app.route('/Pilotage')
+def pilotage():
+    return render_template('pilotage.html')
+    
+# Méthode pour renvoyer vers la page d'ouverture du coffre
+@app.route('/Coffre')
+def coffre():
+    return render_template('coffre.html')    
 
 
 #------------------------------------------------------------------------------

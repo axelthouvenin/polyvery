@@ -1,5 +1,5 @@
 # Librairies pour le serveur web et la caméra
-from flask import Flask, render_template, Response, request
+from flask import Flask, render_template, Response, request, url_for, flash, redirect
 from camera import VideoCamera
 import time
 import threading
@@ -61,7 +61,7 @@ def login():
 def logout():
     global utilisateur
     utilisateur == False
-    return render_template('login.html',message="Déconnexion effectuée avec succès")
+    return redirect(url_for('login'))
 
 # Méthode pour renvoyer vers la page d'acceuil
 @app.route('/Accueil')
