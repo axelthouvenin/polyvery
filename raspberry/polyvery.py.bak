@@ -56,16 +56,13 @@ def login():
             return render_template('login.html',message="Mot de passe incorect")
     return render_template('login.html')
  
-# Méthodes pour se déconnecter du site
+# Méthode pour se déconnecter du site
 @app.route('/Logout')
 def logout():
     global utilisateur
     utilisateur == False
     return redirect(url_for('login'))
 
-@app.route("/Logout2")
-def Logout():
-    return render_template('login.html')
 # Méthodes pour renvoyer vers la page d'acceuil
 @app.route('/Accueil')
 def accueil():
