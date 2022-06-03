@@ -52,7 +52,8 @@ def login():
                 return render_template('accueil.html')    
             else :
                 return render_template('login.html',message="Une personne est déjà connectée au robot")
-            
+        else:
+            return render_template('login.html',message="Mot de passe incorect")
     return render_template('login.html')
  
 
