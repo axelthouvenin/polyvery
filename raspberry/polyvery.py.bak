@@ -61,9 +61,9 @@ def login():
 def logout():
     global utilisateur
     utilisateur == False
-    return redirect(url_for('/Logout2'))
+    return redirect(url_for('login'))
 
-@appFlask.route("/Logout2")
+@app.route("/Logout2")
 def Logout():
     return render_template('login.html')
 # Méthodes pour renvoyer vers la page d'acceuil
