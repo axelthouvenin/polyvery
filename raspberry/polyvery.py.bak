@@ -63,9 +63,6 @@ def logout():
     utilisateur == False
     return redirect(url_for('/'))
 
-@appFlask.route("/Logout")
-def LoginPage():
-return "You are redirected to Login Page"
 # Méthodes pour renvoyer vers la page d'acceuil
 @app.route('/Accueil')
 def accueil():
