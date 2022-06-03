@@ -35,10 +35,10 @@ pi_camera = VideoCamera(flip=False)
 # Création de l'application Flask
 app = Flask(__name__)
 
-# Réccupération de la page HTML du site
+# Réccupération des pages HTML du site
 @app.route('/')
 def index():
-    return render_template('index.html') 
+    return render_template('pilotage.html') 
 
 # Configuration de la caméra
 def gen(camera):
