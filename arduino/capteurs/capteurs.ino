@@ -7,7 +7,7 @@
 
 // Initialisation des pins des capteurs (trig pin, echo pin)
 UltraSonicDistanceSensor CU_Front_Mid(51,50);  
-UltraSonicDistanceSensor CU_Front_Left(42,41);
+UltraSonicDistanceSensor CU_Front_Left(41,40);
 UltraSonicDistanceSensor CU_Front_Right(49,48);
 UltraSonicDistanceSensor CU_Front_Under(47,46);
 UltraSonicDistanceSensor CU_Back_Under(53,52);
@@ -67,7 +67,7 @@ void loop () {
   delay(100);
   servoDroite.write(37);
   //servoDroite.write(37+90);
-  //servoGauche.write(150);
+  servoGauche.write(130);
 }
 
 

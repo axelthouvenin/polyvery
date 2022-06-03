@@ -34,11 +34,24 @@ pi_camera = VideoCamera(flip=False)
 
 # Création de l'application Flask
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'df0331cefc6c2b2a5d0208a726a5d1c0fd38324feba25506'
 
-# Réccupération de la page HTML du site
+# Réccupération des pages HTML du site
 @app.route('/')
 def index():
-    return render_template('pilotage.html') 
+    return render_template('login.html') 
+    
+# Méthode de test du mot de passe pour renvoyer vers la page d'acceuil
+@app.route('/login/', methods=('GET', 'POST'))
+def create():
+    if request.method == 'POST':
+        password = request.form['password']
+        print(password)
+        if not password:
+            flash('Mot de passe requis !')
+        elif password== 1234 :
+            return render_template('accueil.html')
+    return render_template('login.html')
 
 # Configuration de la caméra
 def gen(camera):
@@ -112,6 +125,8 @@ def MarcheMotorB( sens ):
 	elif( sens == SENS_ARRET ):
 		GPIO.output( MOTORB_IN1, GPIO.LOW )
 		GPIO.output( MOTORB_IN2, GPIO.LOW ) 
+        
+# Fonction
 
 #---- Fonctions de pilotage et d'autorisation des déplacements
 @app.route('/Avancer')
