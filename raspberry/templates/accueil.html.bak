@@ -132,17 +132,4 @@
 	  <li><input type="button" id="Logout" value = "DECONNEXION"></li>
 	</ul>
     </body>
-    	<script type=text/javascript> 
-		$(function() { $("#Accueil").click(function (event) { $.getJSON('/Accueil', { },
-    	function(data) { }); return false; }); });
-		
-		$(function() { $("#Coffre").click(function (event) { $.getJSON('/Coffre', { },
-    	function(data) { }); return false; }); });
-		
-		$(function() { $("#Pilotage").click(function (event) { $.getJSON('/Pilotage', { },
-    	function(data) { }); return false; }); });
-
-    	$(function() { $("#Logout").click(function (event) { $.getJSON('/Logout', { },
-    	function(data) { }); return false; }); });
-		</script>
 </html>

@@ -46,7 +46,7 @@ def login():
     if request.method == 'POST':
         password = request.form['password']
         print(password)
-        if password == "1234":
+        if password == "polyveryIA2R": #le mot de passe peut-être changé !
             if utilisateur == False:
                 utilisateur = True;
                 return render_template('accueil.html')    
@@ -56,6 +56,27 @@ def login():
             return render_template('login.html',message="Mot de passe incorect")
     return render_template('login.html')
  
+# Méthode pour se déconnecter du site
+@app.route('/Logout')
+def logout():
+    global utilisateur
+    utilisateur == False
+    return render_template('login.html',message="Déconnexion effectuée avec succès")
+
+# Méthode pour renvoyer vers la page d'acceuil
+@app.route('/Accueil')
+def accueil():
+    return render_template('acceuil.html')
+    
+# Méthode pour renvoyer vers la page de pilotage du robot
+@app.route('/Pilotage')
+def pilotage():
+    return render_template('pilotage.html')
+    
+# Méthode pour renvoyer vers la page d'ouverture du coffre
+@app.route('/Coffre')
+def coffre():
+    return render_template('coffre.html')    
 
 
 #------------------------------------------------------------------------------
