@@ -20,15 +20,34 @@
 		font: bold 40px arial, sans-serif;
 	}
 
+	p{
+		color : white;
+		text-align:center;
+		font: bold 20px arial, sans-serif;
+	}
+
+	div.envoi{
+		padding: 10px;
+	}
+
+	.submit{
+		background-color: black;
+	}
+
+
 </style>
 
     <body>
 		<h1>Connexion au robot Polyvery</h1>
 		<form>
 			<center>
-				<p>Mot de passe :</p>
-				<input type="password" name="password"><br>
-				<input type="submit">
+				<p>Saisissez le mot de passe :</p>
+				<div class="password">
+					<input type="password" name="password"><br>
+				</div>
+				<div class="envoi">
+					<input type="submit">
+				</div>
 			</center>
 		</form>
 		
