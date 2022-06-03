@@ -56,24 +56,24 @@ def login():
             return render_template('login.html',message="Mot de passe incorect")
     return render_template('login.html')
  
-# Méthode pour se déconnecter du site
+# Méthodes pour se déconnecter du site
 @app.route('/Logout')
 def logout():
     global utilisateur
     utilisateur == False
-    return redirect(url_for('login'))
+    return redirect(url_for('/'))
 
-# Méthode pour renvoyer vers la page d'acceuil
+# Méthodes pour renvoyer vers la page d'acceuil
 @app.route('/Accueil')
 def accueil():
     return render_template('acceuil.html')
     
-# Méthode pour renvoyer vers la page de pilotage du robot
+# Méthodes pour renvoyer vers la page de pilotage du robot
 @app.route('/Pilotage')
 def pilotage():
     return render_template('pilotage.html')
     
-# Méthode pour renvoyer vers la page d'ouverture du coffre
+# Méthodes pour renvoyer vers la page d'ouverture du coffre
 @app.route('/Coffre')
 def coffre():
     return render_template('coffre.html')    
