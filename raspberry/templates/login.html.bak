@@ -39,18 +39,18 @@
 
     <body>
 		<h1>Connexion au robot Polyvery</h1>
-		<form>
+		<form method="post">
 			<center>
 <<<<<<< Updated upstream
 				<p>Saisissez le mot de passe :</p>
-				<div class="password">
+				<div class="password" >
 					<input type="password" name="password"><br>
 				</div>
 				<div class="envoi">
 					<input type="submit">
 				</div>
 =======
-				<p>Mot de passe :</p>
+				<h1>Mot de passe :</h1>
 				<input type="password" name="pasword"></input><br><br>
 				<input type="submit">
 >>>>>>> Stashed changes
