@@ -6,6 +6,7 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     </head>
     <style type="text/css" media="screen">
+
     body {
         background-color : #282a35;
         background-attachment:fixed;
@@ -64,25 +65,6 @@
 		justify-content: center;
 	}
 
-	input{
-		background: #0066A2;
-		color: white;
-		border-style: outset;
-		border-color: #0066A2;
-		height: 100px;
-		width: 100px;
-		font: bold 15px arial, sans-serif;
-		text-shadow:none;	
-	}
-	
-	input:hover {
-		background: #016ABC;
-		color: #fff;
-		border: 1px solid #eee;
-		box-shadow: 5px 5px 5px #eee;
-		text-shadow:none;
-	}
-
 	ul {
 		font: bold 15px arial, sans-serif;
 		list-style-type: none;
@@ -101,8 +83,13 @@
 	
 	li {
 	  float: left;
+	  display: block;
+	  color: white;
+	  text-align: center;
+	  padding: 14px 16px;
+	  text-decoration: none;
 	}
-
+	
 	li a {
 	  display: block;
 	  color: white;
@@ -111,7 +98,7 @@
 	  text-decoration: none;
 	}
 
-	li a:hover {
+	li:hover {
 	  background-color: #111;
 	}
 
@@ -120,16 +107,27 @@
 		margin-bottom: 0px;
 	}
 
+	input{
+	background-color: #333;
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+	}
+
 
 
 </style>
 
     <body>
     <ul>
-	  <li><input type="button" id="Accueil" value = "ACCUEIL"></i></li>
-	  <li><input type="button" id="Coffre" value = "OUVERTURE COFFRE"></li>
-	  <li><input type="button" id="Pilotage" value = "PILOTAGE ROBOT "></li>
-	  <li><input type="button" id="Logout" value = "DECONNEXION"></li>
+	  <li><a href="/accueil">ACCUEIL</a></li>
+	  <li><a href="/coffre">OUVERTURE COFFRE</a></li>
+	  <li><a href="/pilotage">PILOTAGE ROBOT</a></li>
+	  <li><a href="/login">DECONNEXION</a></li>
 	</ul>
     </body>
 </html>

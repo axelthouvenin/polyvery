@@ -48,40 +48,29 @@ def login():
         print(password)
         if password == "polyveryIA2R": #le mot de passe peut-être changé !
             if utilisateur == False:
-                utilisateur = True;
+                #utilisateur = True; peut etre remis lorsque que la sécurité marchera
                 return render_template('accueil.html')    
             else :
                 return render_template('login.html',message="Une personne est déjà connectée au robot")
         else:
             return render_template('login.html',message="Mot de passe incorect")
     return render_template('login.html')
- 
-# Méthodes pour se déconnecter du site
-@app.route('/Logout')
-def logout():
-    global utilisateur
-    utilisateur == False
-    return redirect(url_for('/Logout2'))
 
-@appFlask.route("/Logout2")
-def Logout():
-    return render_template('login.html')
-# Méthodes pour renvoyer vers la page d'acceuil
-@app.route('/Accueil')
-def accueil():
-    return render_template('acceuil.html')
+@app.route('/accueil')
+def acceuil():
+    return render_template('accueil.html')
     
-# Méthodes pour renvoyer vers la page de pilotage du robot
-@app.route('/Pilotage')
+@app.route('/login')
+def deconnexion():
+    return render_template('login.html')
+    
+@app.route('/pilotage')
 def pilotage():
     return render_template('pilotage.html')
     
-# Méthodes pour renvoyer vers la page d'ouverture du coffre
-@app.route('/Coffre')
+@app.route('/coffre')
 def coffre():
-    return render_template('coffre.html')    
-
-
+    return render_template('coffre.html')
 #------------------------------------------------------------------------------
 # Configuration de la caméra
 def gen(camera):
@@ -117,8 +106,8 @@ GPIO.setup( MOTORB_ENABLE, GPIO.OUT )
 
 M1_Vitesse = GPIO.PWM(MOTORA_ENABLE, 100)
 M2_Vitesse = GPIO.PWM(MOTORB_ENABLE, 100)
-M1_Vitesse.start(45)
-M2_Vitesse.start(45)
+M1_Vitesse.start(20)
+M2_Vitesse.start(20)
 
 # --- Controle du L298 --------------------------
 # Sens de rotation du moteur
@@ -177,7 +166,7 @@ def Reculer():
         MarcheMotorA( SENS_ARRIERE )
         MarcheMotorB( SENS_ARRIERE )
         Activer()
-        return "1"
+    return "1"
 
 @app.route('/Droite')
 def Droite():
@@ -188,7 +177,7 @@ def Droite():
         MarcheMotorB( SENS_AVANT )
         Activer()
         print("droite")
-        return "1"
+    return "1"
 
 @app.route('/Gauche')
 def Gauche():
@@ -198,7 +187,7 @@ def Gauche():
         MarcheMotorA( SENS_AVANT )
         MarcheMotorB( SENS_ARRIERE )
         Activer()
-        return "1"
+    return "1"
 		
 @app.route('/Stop')
 def Stop():
@@ -208,13 +197,11 @@ def Stop():
         MarcheMotorA( SENS_ARRET )
         MarcheMotorB( SENS_ARRET )
         Activer()
-        return "1"
+    return "1"
 
 # a refaire et valider
 @app.route('/Droite90')
 def Droite90():
-    M1_Vitesse.start(20)
-    M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
         cible = angle - 90
@@ -224,13 +211,11 @@ def Droite90():
         while angle> cible:
             pass
         Stop()
-        return "1"
+    return "1"
 
 # à refaire et valider
 @app.route('/Gauche90')
 def Gauche90():
-    M1_Vitesse.start(20)
-    M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
         cible = angle + 90
@@ -240,13 +225,11 @@ def Gauche90():
         while angle < cible:
             pass
         Stop()
-        return "1"
+    return "1"
         
 # à refaire et valider
 @app.route('/DemiTour')
 def DemiTour():
-    M1_Vitesse.start(20)
-    M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
         cible = angle + 180
@@ -254,7 +237,7 @@ def DemiTour():
         while angle < cible:
             pass
         Stop()
-        return "1"
+    return "1"
 
 @app.route('/Immobile')
 def Immobile():
@@ -282,6 +265,12 @@ def EviterObstacle():
         if FR == 1 :
             Reculer()
             while FR ==1 and BU == 2:
+                pass
+            Stop()
+        # mur avant gauche
+        if FL == 1 :
+            Reculer()
+            while FL ==1 and BU == 2:
                 pass
             Stop()
         # vide devant

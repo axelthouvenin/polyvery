@@ -2,7 +2,7 @@
 <html>
     <head>
     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>Polyvery</title>
+        <title>Polyvery - Accueil </title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     </head>
     <style type="text/css" media="screen">
@@ -89,6 +89,14 @@
 	  padding: 14px 16px;
 	  text-decoration: none;
 	}
+	
+	li a {
+	  display: block;
+	  color: white;
+	  text-align: center;
+	  padding: 14px 16px;
+	  text-decoration: none;
+	}
 
 	li:hover {
 	  background-color: #111;
@@ -99,40 +107,16 @@
 		margin-bottom: 0px;
 	}
 
-	input{
-	background-color: #333;
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-	}
-
 
 
 </style>
 
     <body>
     <ul>
-	  <li><input type="button" id="Accueil" value = "ACCUEIL"></i></li>
-	  <li><input type="button" id="Coffre" value = "OUVERTURE COFFRE"></li>
-	  <li><input type="button" id="Pilotage" value = "PILOTAGE ROBOT "></li>
-	  <li><input type="button" id="Logout" value = "DECONNEXION"></li>
+	  <li><a href="/accueil">ACCUEIL</a></li>
+	  <li><a href="/coffre">OUVERTURE COFFRE</a></li>
+	  <li><a href="/pilotage">PILOTAGE ROBOT</a></li>
+	  <li><a href="/login">DECONNEXION</a></li>
 	</ul>
     </body>
-    	<script type=text/javascript> 
-		$(function() { $("#Accueil").click(function (event) { $.getJSON('/Accueil', { },
-    	function(data) { }); return false; }); });
-		
-		$(function() { $("#Coffre").click(function (event) { $.getJSON('/Coffre', { },
-    	function(data) { }); return false; }); });
-		
-		$(function() { $("#Pilotage").click(function (event) { $.getJSON('/Pilotage', { },
-    	function(data) { }); return false; }); });
-
-    	$(function() { $("#Logout").click(function (event) { $.getJSON('/Logout', { },
-    	function(data) { }); return false; }); });
-		</script>
 </html>
