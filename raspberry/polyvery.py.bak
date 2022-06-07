@@ -56,6 +56,17 @@ def login():
             return render_template('login.html',message="Mot de passe incorect")
     return render_template('login.html')
 
+@app.route('/login')
+def deconnexion():
+    return render_template('login.html')
+    
+@app.route('/pilotage')
+def pilotage():
+    return render_template('pilotage.html')
+    
+@app.route('coffre')
+def coffre():
+    return render_template('coffre.html')
 #------------------------------------------------------------------------------
 # Configuration de la caméra
 def gen(camera):
