@@ -55,7 +55,7 @@ def login():
         else:
             return render_template('login.html',message="Mot de passe incorect")
     if request.method =='deconnexion':
-    utilisateur = False
+        utilisateur = False
         return render_template('login.html')
     return render_template('login.html')
 
