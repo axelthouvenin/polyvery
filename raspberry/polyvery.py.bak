@@ -166,7 +166,7 @@ def Reculer():
         MarcheMotorA( SENS_ARRIERE )
         MarcheMotorB( SENS_ARRIERE )
         Activer()
-        return "1"
+    return "1"
 
 @app.route('/Droite')
 def Droite():
@@ -177,7 +177,7 @@ def Droite():
         MarcheMotorB( SENS_AVANT )
         Activer()
         print("droite")
-        return "1"
+    return "1"
 
 @app.route('/Gauche')
 def Gauche():
@@ -187,7 +187,7 @@ def Gauche():
         MarcheMotorA( SENS_AVANT )
         MarcheMotorB( SENS_ARRIERE )
         Activer()
-        return "1"
+    return "1"
 		
 @app.route('/Stop')
 def Stop():
@@ -197,7 +197,7 @@ def Stop():
         MarcheMotorA( SENS_ARRET )
         MarcheMotorB( SENS_ARRET )
         Activer()
-        return "1"
+    return "1"
 
 # a refaire et valider
 @app.route('/Droite90')

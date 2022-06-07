@@ -106,8 +106,8 @@ GPIO.setup( MOTORB_ENABLE, GPIO.OUT )
 
 M1_Vitesse = GPIO.PWM(MOTORA_ENABLE, 100)
 M2_Vitesse = GPIO.PWM(MOTORB_ENABLE, 100)
-M1_Vitesse.start(45)
-M2_Vitesse.start(45)
+M1_Vitesse.start(20)
+M2_Vitesse.start(20)
 
 # --- Controle du L298 --------------------------
 # Sens de rotation du moteur
@@ -202,8 +202,6 @@ def Stop():
 # a refaire et valider
 @app.route('/Droite90')
 def Droite90():
-    M1_Vitesse.start(20)
-    M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
         cible = angle - 90
@@ -213,15 +211,11 @@ def Droite90():
         while angle> cible:
             pass
         Stop()
-    M1_Vitesse.start(45)
-    M2_Vitesse.start(45)
     return "1"
 
 # à refaire et valider
 @app.route('/Gauche90')
 def Gauche90():
-    M1_Vitesse.start(20)
-    M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
         cible = angle + 90
@@ -231,15 +225,11 @@ def Gauche90():
         while angle < cible:
             pass
         Stop()
-    M1_Vitesse.start(45)
-    M2_Vitesse.start(45)
     return "1"
         
 # à refaire et valider
 @app.route('/DemiTour')
 def DemiTour():
-    M1_Vitesse.start(20)
-    M2_Vitesse.start(20)
     global autorisation_mouvement
     if autorisation_mouvement == True:
         cible = angle + 180
@@ -247,8 +237,6 @@ def DemiTour():
         while angle < cible:
             pass
         Stop()
-    M1_Vitesse.start(45)
-    M2_Vitesse.start(45)
     return "1"
 
 @app.route('/Immobile')
