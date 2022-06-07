@@ -30,6 +30,8 @@ commande = 0
 autorisation_mouvement = False 
 #Variable pour savoir si une personne est connectée au site (de base à false)
 utilisateur = False;
+#Variable pour savoir si le robot est en train d'avancer pour corriger sa trajectoire
+avancer = False;
 
 # Déclaration de la pi_camera
 pi_camera = VideoCamera(flip=False)
@@ -152,11 +154,15 @@ def MarcheMotorB( sens ):
 def Avancer():
     global autorisation_mouvement
     if autorisation_mouvement == True:
+        global avancer, angle
+        #avancer = True
+        #thread_trajectoire = threading.Thread(target = Trajectoire(angle))
+        #thread_trajectoire.start()
         Desactiver()
         MarcheMotorA( SENS_AVANT )
         MarcheMotorB( SENS_AVANT )
         Activer()
-        return "1"
+    return "1"
 
 @app.route('/Reculer')
 def Reculer():
@@ -191,6 +197,8 @@ def Gauche():
 		
 @app.route('/Stop')
 def Stop():
+    global avancer
+    avancer = False
     global autorisation_mouvement
     if autorisation_mouvement == True:
         Desactiver()
@@ -251,6 +259,16 @@ def Immobile():
         print("Le robot ne peut pas se déplacer")
     return "1"
 
+# Correction de la trajectoire lorsque que la commande est Avancer
+def trajectoire(objectif):
+    global avancer, angle
+    while avancer == True:
+        if objectif>=0:
+            pass
+        else:
+            pass
+    return 1
+    
 # déplacement en cas d'obstacle rencontré (à refaire et valider)
 def EviterObstacle():
     while 1:
