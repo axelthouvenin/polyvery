@@ -213,7 +213,9 @@ def Droite90():
         while angle> cible:
             pass
         Stop()
-        return "1"
+    M1_Vitesse.start(45)
+    M2_Vitesse.start(45)
+    return "1"
 
 # à refaire et valider
 @app.route('/Gauche90')
@@ -229,7 +231,9 @@ def Gauche90():
         while angle < cible:
             pass
         Stop()
-        return "1"
+    M1_Vitesse.start(45)
+    M2_Vitesse.start(45)
+    return "1"
         
 # à refaire et valider
 @app.route('/DemiTour')
@@ -243,7 +247,9 @@ def DemiTour():
         while angle < cible:
             pass
         Stop()
-        return "1"
+    M1_Vitesse.start(45)
+    M2_Vitesse.start(45)
+    return "1"
 
 @app.route('/Immobile')
 def Immobile():
@@ -271,6 +277,12 @@ def EviterObstacle():
         if FR == 1 :
             Reculer()
             while FR ==1 and BU == 2:
+                pass
+            Stop()
+        # mur avant gauche
+        if FL == 1 :
+            Reculer()
+            while FL ==1 and BU == 2:
                 pass
             Stop()
         # vide devant
