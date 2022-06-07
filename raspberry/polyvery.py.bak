@@ -238,7 +238,7 @@ def Gauche90():
 # à refaire et valider
 @app.route('/DemiTour')
 def DemiTour():
-    global autorisation_mouvement
+    global autorisation_mouvement, angle
     if autorisation_mouvement == True:
         cible = angle + 180
         Droite()

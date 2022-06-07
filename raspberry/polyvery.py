@@ -264,7 +264,7 @@ def trajectoire(objectif):
     global avancer, angle
     while avancer == True:
         if objectif>=0:
-            
+            pass
         else:
             pass
     return 1
