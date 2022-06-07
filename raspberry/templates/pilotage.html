@@ -124,12 +124,25 @@
 		background-color: #333;
 	}
 
-	h1{
+	h1 {
+		font: bold 30px arial, sans-serif;
+		overflow: hidden;
+		color: #fff;
+		border: solid;
+		text-align: center;
+		width: 25%;
+				margin-left: auto;
+		margin-right: auto;
+	}
+
+		h2 {
 		font: bold 20px arial, sans-serif;
 		overflow: hidden;
 		color: #fff;
-
+		border: solid;
+		text-align: center;
 	}
+	
 	
 	li {
 	  float: left;
@@ -157,6 +170,7 @@
 	  <li><a href="/pilotage">PILOTAGE ROBOT</a></li>
 	  <li><a href="/login">DECONNEXION</a></li>
 	</ul>
+		<h1>PILOTAGE ROBOT</h1>
         <div class="container">
 			<div class="left_buttons">
                     <div class="l1_button">
@@ -172,7 +186,7 @@
                     </div>  
             </div>  
             <div class="video">
-            		<h1>CAMÉRA ROBOT</h1>
+            		<h2>CAMÉRA ROBOT</h2>
                  <img src="{{ url_for('video_feed') }}" width="640" height="480">
 			</div> 	
 			<div class="right_buttons">

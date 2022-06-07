@@ -4,36 +4,7 @@
     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Polyvery - Coffre</title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    	<script type=text/javascript> 
-		$(function() { $("#Gauche90").click(function (event) { $.getJSON('/Gauche90', { },
-    	function(data) { }); return false; }); });
-		
-		$(function() { $("#Avancer").click(function (event) { $.getJSON('/Avancer', { },
-    	function(data) { }); return false; }); });
-		
-		$(function() { $("#Droite90").click(function (event) { $.getJSON('/Droite90', { },
-    	function(data) { }); return false; }); });
-
-    	$(function() { $("#DemiTour").click(function (event) { $.getJSON('/DemiTour', { },
-    	function(data) { }); return false; }); });
-		
-		$(function() { $("#Reculer").click(function (event) { $.getJSON('/Reculer', { },
-    	function(data) { }); return false; }); }); 
-		
-		$(function() { $("#Droite").click(function (event) { $.getJSON('/Droite', { },
-    	function(data) { }); return false; }); });
-		
-		$(function() { $("#Gauche").click(function (event) { $.getJSON('/Gauche', { },
-    	function(data) { }); return false; }); });
-		
-		$(function() { $("#Stop").click(function (event) { $.getJSON('/Stop', { },
-    	function(data) { }); return false; }); });
-
-    	$(function() { $("#Immobile").click(function (event) { $.getJSON('/Immobile', { },
-    	function(data) { }); return false; }); });
-		
-		function playSound () {document.getElementById('play').play();}
-		</script>
+    	<script type=text/javascript> </script>
     </head>
     <style type="text/css" media="screen">
     body {
@@ -55,47 +26,7 @@
 		justify-content: space-between;
 	}
 
-	div.video{
-		text-align: center;
-		padding-bottom: 10px;
-	}
-
-
-
-	div.left_buttons{
-		vertical-align: middle;
-  		margin-left: auto;
-  		margin-right: auto;
-  		margin-top:  auto;
-  		margin-bottom: auto;
-	}
-
-	div.bottom_buttons{
-	  	text-align: center;
-	}
-
-
-	div.right_buttons{
-  		margin-left: auto;
-  		margin-right: auto;
-  		margin-top:  auto;
-  		margin-bottom: auto;
-	}
-
-	div.l1_button{
-		display: flex;
-		justify-content: center;
-	}
-
-	div.l2_button{
-
-	}
 	
-	div.l3_button{
-		display: flex;
-		justify-content: center;
-	}
-
 	input{
 		background: #0066A2;
 		color: white;
@@ -124,11 +55,22 @@
 		background-color: #333;
 	}
 
-	h1{
-		font: bold 20px arial, sans-serif;
+	h1 {
+		font: bold 30px arial, sans-serif;
 		overflow: hidden;
 		color: #fff;
-
+		border: solid;
+		text-align: center;
+		width: 25%;
+		margin-left: 600px;
+		margin-right: auto;
+	}
+	h2 {
+		font: bold 15px arial, sans-serif;
+		overflow: hidden;
+		color: #fff;
+		border: solid;
+		text-align: center;
 	}
 	
 	li {
@@ -147,6 +89,38 @@
 	  background-color: #111;
 	}
 
+	div.container{
+			float: left;	
+			display: inline-block;
+	}
+	div.left{
+		margin-top: auto;
+		margin-bottom: auto;
+		width: 20%;
+	}
+
+	span.left_log{
+		padding-top: 50px;
+		float: left;
+		width: 20%;
+	}
+
+
+	span.right{
+		padding-right: 250px;
+		float: right;
+		width: 20%;
+		text-align: center;
+	}
+
+	div.log{
+		padding-top: 350px;
+		width: 20%;
+	}
+
+
+
+
 
 </style>
 
@@ -157,40 +131,34 @@
 	  <li><a href="/pilotage">PILOTAGE ROBOT</a></li>
 	  <li><a href="/login">DECONNEXION</a></li>
 	</ul>
+	<h1>OUVERTURE COFFRE</h1>
         <div class="container">
-			<div class="left_buttons">
-                    <div class="l1_button">
-                    	<i type="button" class="fa fa-arrow-circle-up" id="Avancer" style="font-size:56px;color:white" value = "Avancer"></i>
-                    </div>
-                    <div class="l2_button">
-                    	<i type="button" class="fa fa-arrow-circle-left" id="Gauche" style="font-size:56px;color:white" value = "Gauche"></i>
-						<i type="button" class="fa fa-arrows-alt" id="Stop" style="font-size:56px ; padding: 10px; color:white" value = "Stop"></i>
-                    	<i type="button" class="fa fa-arrow-circle-right" id="Droite" style="font-size:56px;color:white" value = "Droite" > </i>						
-					</div>
-					<div class="l3_button">
-						<i type="button" class="fa fa-arrow-circle-down" id="Reculer" style="font-size:56px;color:white" value = "Reculer" ></i>
-                    </div>  
-            </div>  
-            <div class="video">
-            		<h1>CAMÉRA ROBOT</h1>
-                 <img src="{{ url_for('video_feed') }}" width="640" height="480">
-			</div> 	
-			<div class="right_buttons">
-				<div class="l2_button">
-					<i type="button" class="fa fa-angle-double-left" id="Gauche90" style="font-size:66px ; padding: 30px; color:white" value = "Gauche90" ></i>
-					<i type="button" class="fa fa-angle-double-right" id="Droite90" style="font-size:66px;color:white" value = "Droite90" > </i>
-					<i type="button" class="fa fa-repeat" id="DemiTour" style="font-size:56px; padding: 10px;color:white" value = "DemiTour" > </i>
-                </div> 	
-			</div>
+        	<div class= "left">
+        		    <span class= "left_button">
+        		    	<h2>LISTE DES EMPREINTES</h2>
+		        		<i type="button" class="fa fa-plus" id="plus" style="font-size:20px;color:white" value = "plus"></i>
+		        		<i type="button" class="fa fa-minus" id="moins" style="font-size:20px;color:white" value = "moins"></i>
+	        		</span>
+	        		<span class= "left_log">
+	        			<img src="log_empreinte.png" alt="log_empreinte">  
+	        		</span>
+
+        	</div>
+
+		        	<span class= "right">
+		         		<h2>ETAT DU COFFRE</h2>
+		         		<i type="button" class="fa fa-unlock" id="ouvert" style="font-size:100px;color:white" value = "ouvert"></i> 		
+		        	</span>
+	        <div class="log">
+	        	<span class= "bottom">
+	         		<h2>LOG DU COFFRE</h2>   
+	         		<img src="log_coffre.png" alt="log_coffre">    		
+	        	</span>
+	        </div>
+
         </div>
-	<!-- <div id="bouton_msg_cov">
-	    <audio id="play" src="https://www.dropbox.com/s/dbmhppt90hln50f/message_polyvery.mp3?dl=1"></audio>
-	    <button onclick="playSound()">Play</button>
-    	    <script>function playSound () {document.getElementById('play').play();}</script>
-	</div>-->
-			<div class="bottom_buttons">
-				<i type="button" class="fa fa-play" id="Immobile" style="font-size:56px;color:white" value = "Immobile"></i>
-			</div>
-		</div>
+
+
+
     </body>
 </html>
