@@ -48,18 +48,12 @@ def login():
         print(password)
         if password == "polyveryIA2R": #le mot de passe peut-être changé !
             if utilisateur == False:
-                utilisateur = True;
+                #utilisateur = True; peut etre remis lorsque que la sécurité marchera
                 return render_template('accueil.html')    
             else :
                 return render_template('login.html',message="Une personne est déjà connectée au robot")
         else:
             return render_template('login.html',message="Mot de passe incorect")
-    if request.method =='GET':
-        hidden = request.form['password']
-        print(hidden)
-        if hidden == "deconnexion":
-            utilisateur = False
-            return render_template('login.html')
     return render_template('login.html')
 
 #------------------------------------------------------------------------------
