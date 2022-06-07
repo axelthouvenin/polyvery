@@ -54,17 +54,10 @@ def login():
                 return render_template('login.html',message="Une personne est déjà connectée au robot")
         else:
             return render_template('login.html',message="Mot de passe incorect")
-    if request.method =='test':
+    if request.method =='deconnexion':
+    utilisateur = False
         return render_template('login.html')
     return render_template('login.html')
- 
-# Méthode pour se déconnecter du site
-@app.route('/Logout')
-def logout():
-    global utilisateur
-    utilisateur == False
-    return redirect(url_for('login')) 
-
 
 #------------------------------------------------------------------------------
 # Configuration de la caméra
