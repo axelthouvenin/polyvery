@@ -116,11 +116,11 @@
 
     <body>
     <ul>
-	  <li><input type="button" id="Accueil" value = "ACCUEIL"></i></li>
-	  <li><input type="button" id="Coffre" value = "OUVERTURE COFFRE"></li>
-	  <li><input type="button" id="Pilotage" value = "PILOTAGE ROBOT "></li>
+	  <li><a href="/accueil">ACCUEIL</a></li>
+	  <li><a href="https://example.com">COFFRE</a></li>
+	  <li><a href="https://example.com">PILOTAGE</a></li>
 	  <li><button id="Logout" value = "DECONNEXION"></li>
-	  <form method="deconnexion"><div class="envoi"><input type="submit"></form>
+	  <form method="GET"><input type="submit" value="envoyer"><input name="deconnexion" type="hidden" value="deconnexion"></form>
 	</ul>
     </body>
 </html>
