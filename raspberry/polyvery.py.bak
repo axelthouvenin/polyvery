@@ -30,6 +30,8 @@ commande = 0
 autorisation_mouvement = False 
 #Variable pour savoir si une personne est connectée au site (de base à false)
 utilisateur = False;
+#Variable pour savoir si le robot est en train d'avancer pour corriger sa trajectoire
+avancer = False;
 
 # Déclaration de la pi_camera
 pi_camera = VideoCamera(flip=False)
@@ -152,6 +154,10 @@ def MarcheMotorB( sens ):
 def Avancer():
     global autorisation_mouvement
     if autorisation_mouvement == True:
+        global avancer, angle
+        #avancer = True
+        #thread_trajectoire = threading.Thread(target = Trajectoire(angle))
+        #thread_trajectoire.start()
         Desactiver()
         MarcheMotorA( SENS_AVANT )
         MarcheMotorB( SENS_AVANT )
@@ -162,8 +168,6 @@ def Avancer():
 def Reculer():
     global autorisation_mouvement
     if autorisation_mouvement == True:
-    global angle
-        thread_trajectoire = threading.Thread(target = Trajectoire(angle))
         Desactiver()
         MarcheMotorA( SENS_ARRIERE )
         MarcheMotorB( SENS_ARRIERE )
@@ -193,6 +197,8 @@ def Gauche():
 		
 @app.route('/Stop')
 def Stop():
+    global avancer
+    avancer = False
     global autorisation_mouvement
     if autorisation_mouvement == True:
         Desactiver()
@@ -204,7 +210,7 @@ def Stop():
 # a refaire et valider
 @app.route('/Droite90')
 def Droite90():
-    global autorisation_mouvement
+    global autorisation_mouvement, angle
     if autorisation_mouvement == True:
         cible = angle - 90
         if cible <= -180 :
@@ -218,7 +224,7 @@ def Droite90():
 # à refaire et valider
 @app.route('/Gauche90')
 def Gauche90():
-    global autorisation_mouvement
+    global autorisation_mouvement, angle
     if autorisation_mouvement == True:
         cible = angle + 90
         if cible >= 180 :
@@ -253,6 +259,16 @@ def Immobile():
         print("Le robot ne peut pas se déplacer")
     return "1"
 
+# Correction de la trajectoire lorsque que la commande est Avancer
+def trajectoire(objectif):
+    global avancer, angle
+    while avancer == True:
+        if objectif>=0:
+            
+        else:
+            pass
+    return 1
+    
 # déplacement en cas d'obstacle rencontré (à refaire et valider)
 def EviterObstacle():
     while 1:

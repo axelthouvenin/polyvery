@@ -210,7 +210,7 @@ def Stop():
 # a refaire et valider
 @app.route('/Droite90')
 def Droite90():
-    global autorisation_mouvement
+    global autorisation_mouvement, angle
     if autorisation_mouvement == True:
         cible = angle - 90
         if cible <= -180 :
@@ -224,7 +224,7 @@ def Droite90():
 # à refaire et valider
 @app.route('/Gauche90')
 def Gauche90():
-    global autorisation_mouvement
+    global autorisation_mouvement, angle
     if autorisation_mouvement == True:
         cible = angle + 90
         if cible >= 180 :
@@ -238,7 +238,7 @@ def Gauche90():
 # à refaire et valider
 @app.route('/DemiTour')
 def DemiTour():
-    global autorisation_mouvement
+    global autorisation_mouvement, angle
     if autorisation_mouvement == True:
         cible = angle + 180
         Droite()
@@ -264,7 +264,7 @@ def trajectoire(objectif):
     global avancer, angle
     while avancer == True:
         if objectif>=0:
-            pass
+            
         else:
             pass
     return 1
