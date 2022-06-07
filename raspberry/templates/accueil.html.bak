@@ -117,10 +117,9 @@
     <body>
     <ul>
 	  <li><a href="/accueil">ACCUEIL</a></li>
-	  <li><a href="https://example.com">COFFRE</a></li>
-	  <li><a href="https://example.com">PILOTAGE</a></li>
-	  <li><button id="Logout" value = "DECONNEXION"></li>
-	  <form method="GET"><input type="submit" value="envoyer"><input name="deconnexion" type="hidden" value="deconnexion"></form>
+	  <li><a href="/coffre">COFFRE</a></li>
+	  <li><a href="/pilotage">PILOTAGE</a></li>
+	  <li><a href="/login">DECONNEXION</a></li>
 	</ul>
     </body>
 </html>
