@@ -89,6 +89,14 @@
 	  padding: 14px 16px;
 	  text-decoration: none;
 	}
+	
+	li a {
+	  display: block;
+	  color: white;
+	  text-align: center;
+	  padding: 14px 16px;
+	  text-decoration: none;
+	}
 
 	li:hover {
 	  background-color: #111;
@@ -117,8 +125,8 @@
     <body>
     <ul>
 	  <li><a href="/accueil">ACCUEIL</a></li>
-	  <li><a href="/coffre">COFFRE</a></li>
-	  <li><a href="/pilotage">PILOTAGE</a></li>
+	  <li><a href="/coffre">OUVERTURE COFFRE</a></li>
+	  <li><a href="/pilotage">PILOTAGE ROBOT</a></li>
 	  <li><a href="/login">DECONNEXION</a></li>
 	</ul>
     </body>
