@@ -64,7 +64,7 @@ def deconnexion():
 def pilotage():
     return render_template('pilotage.html')
     
-@app.route('coffre')
+@app.route('/coffre')
 def coffre():
     return render_template('coffre.html')
 #------------------------------------------------------------------------------

@@ -56,6 +56,10 @@ def login():
             return render_template('login.html',message="Mot de passe incorect")
     return render_template('login.html')
 
+@app.route('/accueil')
+def acceuil():
+    return render_template('accueil.html')
+    
 @app.route('/login')
 def deconnexion():
     return render_template('login.html')
