@@ -166,7 +166,7 @@ def Avancer():
     global autorisation_mouvement
     if autorisation_mouvement == True:
         global avancer, angle
-        "avancer = True
+        #avancer = True
         #thread_trajectoire = threading.Thread(target = Trajectoire(angle))
         #thread_trajectoire.start()
         Desactiver()

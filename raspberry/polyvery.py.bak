@@ -64,6 +64,17 @@ def acceuil():
     
 @app.route('/login')
 def deconnexion():
+    if request.method == 'POST':
+        password = request.form['password']
+        print(password)
+        if password == "polyveryIA2R": #le mot de passe peut-être changé !
+            if utilisateur == False:
+                #utilisateur = True; peut etre remis lorsque que la sécurité marchera
+                return render_template('accueil.html')    
+            else :
+                return render_template('login.html',message="Une personne est déjà connectée au robot")
+        else:
+            return render_template('login.html',message="Mot de passe incorect")
     return render_template('login.html')
     
 @app.route('/pilotage')
@@ -155,9 +166,9 @@ def Avancer():
     global autorisation_mouvement
     if autorisation_mouvement == True:
         global avancer, angle
-        avancer = True
-        thread_trajectoire = threading.Thread(target = Trajectoire(angle))
-        thread_trajectoire.start()
+        "avancer = True
+        #thread_trajectoire = threading.Thread(target = Trajectoire(angle))
+        #thread_trajectoire.start()
         Desactiver()
         MarcheMotorA( SENS_AVANT )
         MarcheMotorB( SENS_AVANT )
