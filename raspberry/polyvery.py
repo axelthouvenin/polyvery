@@ -108,8 +108,8 @@ GPIO.setup( MOTORB_ENABLE, GPIO.OUT )
 
 M1_Vitesse = GPIO.PWM(MOTORA_ENABLE, 100)
 M2_Vitesse = GPIO.PWM(MOTORB_ENABLE, 100)
-M1_Vitesse.start(30)
-M2_Vitesse.start(30)
+M1_Vitesse.start(30) # Moteur droit
+M2_Vitesse.start(30) # Moteur gauche
 
 # --- Controle du L298 --------------------------
 # Sens de rotation du moteur
@@ -155,9 +155,9 @@ def Avancer():
     global autorisation_mouvement
     if autorisation_mouvement == True:
         global avancer, angle
-        #avancer = True
-        #thread_trajectoire = threading.Thread(target = Trajectoire(angle))
-        #thread_trajectoire.start()
+        avancer = True
+        thread_trajectoire = threading.Thread(target = Trajectoire(angle))
+        thread_trajectoire.start()
         Desactiver()
         MarcheMotorA( SENS_AVANT )
         MarcheMotorB( SENS_AVANT )
@@ -262,11 +262,35 @@ def Immobile():
 # Correction de la trajectoire lorsque que la commande est Avancer
 def trajectoire(objectif):
     global avancer, angle
+    if objectif>=0:
+        gauche_min = objectif-5
+        droite_min = objectif+5
+        if gauche_min > 180:
+            gauche_min = gauche_min -360
+    else:
+        gauche_min = objectif+5
+        droite_min = objectif-5
+        if droite_min >-180:
+            droite_min = droite_min + 360
     while avancer == True:
-        if objectif>=0:
-            pass
+        if objectif <-90 or objectif>90:
+            if angle>gauche_min and angle<0 or angle<droite_min and angle>0:
+                if angle>gauche_min and angle<0:
+                    M2_Vitesse.start(35) # Moteur gauche
+                else:
+                    M1_Vitesse.start(35) # Moteur droit
+            else:
+                M1_Vitesse.start(30) # Moteur droit
+                M2_Vitesse.start(30) # Moteur gauche
         else:
-            pass
+            if angle>gauche_min and angle<180 or angle<droite_min and angle>-180:
+                if angle>gauche_min and angle<180:
+                    M2_Vitesse.start(35) # Moteur gauche
+                else:
+                    M1_Vitesse.start(35) # Moteur droit
+            else:
+                M1_Vitesse.start(30) # Moteur droit
+                M2_Vitesse.start(30) # Moteur gauche  
     return 1
     
 # déplacement en cas d'obstacle rencontré (à refaire et valider)

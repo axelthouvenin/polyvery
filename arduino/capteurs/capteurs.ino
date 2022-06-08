@@ -76,14 +76,14 @@ void loop () {
 void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,int dist_SL,int dist_SR,float angle){
   String trame ="";
   // Capteur avant gauche
-  if(dist_FL>15){
+  if(dist_FL>25){
      trame += "FL=3;";
   }
-  else if(dist_FL<=15){
+  else if(dist_FL<=25){
     if(dist_FL==-1){
       trame += "FL=-1;";
     }
-    else if(dist_FL<10){
+    else if(dist_FL<20){
       trame += "FL=1;";
     }
     else{
@@ -94,14 +94,14 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
     trame += "FL=0;";
   }
   // Capteur avant milieu
-  if(dist_FM>15){
+  if(dist_FM>25){
      trame += "FM=3;";
   }
-  else if(dist_FM<=15){
+  else if(dist_FM<=25){
     if(dist_FM==-1){
       trame += "FM=-1;";
     }
-    else if(dist_FM<10){
+    else if(dist_FM<20){
       trame += "FM=1;";
     }
     else{
@@ -113,14 +113,14 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
   }
 
   // Capteur avant droit
-  if(dist_FR>15){
+  if(dist_FR>25){
      trame += "FR=3;";
   }
-  else if(dist_FR<=15){
+  else if(dist_FR<=25){
     if(dist_FR==-1){
       trame += "FR=-1;";
     }
-    else if(dist_FR<10){
+    else if(dist_FR<20){
       trame += "FR=1;";
     }
     else{
@@ -136,14 +136,14 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
     trame+= "SL=-1;";
   }
   else if(commande==1){
-    if(dist_SL>15){
+    if(dist_SL>25){
        trame += "FR=3;";
     }
-    else if(dist_SL<=15){
+    else if(dist_SL<=25){
       if(dist_SL==-1){
         trame += "SL=-1;";
       }
-      else if(dist_SL<10){
+      else if(dist_SL<20){
         trame += "SL=1;";
       }
       else{
@@ -155,14 +155,14 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
     }
   }
   else if(commande==2){
-     if(dist_SL>25){
+     if(dist_SL>40){
        trame += "SL=3;";
     }
-    else if(dist_SL<=25){
+    else if(dist_SL<=40){
       if(dist_SL==-1){
         trame += "SL=-1;";
       }
-      else if(dist_SL<10){
+      else if(dist_SL<35){
         trame += "SL=1;";
       }
       else{
