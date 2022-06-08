@@ -109,7 +109,7 @@ GPIO.setup( MOTORB_ENABLE, GPIO.OUT )
 M1_Vitesse = GPIO.PWM(MOTORA_ENABLE, 100)
 M2_Vitesse = GPIO.PWM(MOTORB_ENABLE, 100)
 M1_Vitesse.start(30) # Moteur droit
-M2_Vitesse.start(30) # Moteur gauche
+M2_Vitesse.start(35) # Moteur gauche
 
 # --- Controle du L298 --------------------------
 # Sens de rotation du moteur
@@ -155,9 +155,9 @@ def Avancer():
     global autorisation_mouvement
     if autorisation_mouvement == True:
         global avancer, angle
-        avancer = True
-        thread_trajectoire = threading.Thread(target = Trajectoire(angle))
-        thread_trajectoire.start()
+        #avancer = True
+        #thread_trajectoire = threading.Thread(target = Trajectoire(angle))
+        #thread_trajectoire.start()
         Desactiver()
         MarcheMotorA( SENS_AVANT )
         MarcheMotorB( SENS_AVANT )
