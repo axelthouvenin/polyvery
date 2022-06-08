@@ -347,7 +347,7 @@ def LirePortSerie():
             FL = RecupVal(str_trame,str_trame.find("FL=")+3,str_trame.find(";FM"))
             FM = RecupVal(str_trame,str_trame.find("FM=")+3,str_trame.find(";FR"))
             FR = RecupVal(str_trame,str_trame.find("FR=")+3,str_trame.find(";SL"))
-            SL = RecupVal(str_trame,str_trame.find("SL=")+3,str_trame.find(";FR"))
+            SL = RecupVal(str_trame,str_trame.find("SL=")+3,str_trame.find(";SR"))
             SR = RecupVal(str_trame,str_trame.find("SR=")+3,str_trame.find(";FU"))
             FU = RecupVal(str_trame,str_trame.find("FU=")+3,str_trame.find(";BU"))
             BU = RecupVal(str_trame,str_trame.find("BU=")+3,str_trame.find(";angle"))

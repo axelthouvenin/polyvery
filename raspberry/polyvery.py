@@ -109,7 +109,7 @@ GPIO.setup( MOTORB_ENABLE, GPIO.OUT )
 M1_Vitesse = GPIO.PWM(MOTORA_ENABLE, 100)
 M2_Vitesse = GPIO.PWM(MOTORB_ENABLE, 100)
 M1_Vitesse.start(30) # Moteur droit
-M2_Vitesse.start(35) # Moteur gauche
+M2_Vitesse.start(32.5) # Moteur gauche
 
 # --- Controle du L298 --------------------------
 # Sens de rotation du moteur
@@ -338,7 +338,7 @@ def LirePortSerie():
         trame=ser.readline()
         global commande
         commande = str(commande)
-        ser.write(commande.encode())  
+        #ser.write(commande.encode())  
         str_trame = str(trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "SL" in str_trame and "SR" in str_trame  and "FU" in str_trame and "BU" in str_trame :

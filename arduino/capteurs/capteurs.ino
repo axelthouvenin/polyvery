@@ -67,7 +67,7 @@ void loop () {
   envoi_mesures(dist_FL,dist_FM,dist_FR,dist_FU,dist_BU,dist_SL,dist_SR,angle);
   // Délais, 10 microsecondes est le min des capteurs US
   delay(100);
-  if(Serial.available() > 0) {
+  /*if(Serial.available() > 0) {
     commande = Serial.parseInt();
   }
   Serial.println(commande);
@@ -78,7 +78,7 @@ void loop () {
   else if(commande==1){
     servoDroite.write(37+90);
     servoGauche.write(130-90);
-  }
+  }*/
 }
 
 
