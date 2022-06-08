@@ -19,7 +19,7 @@ Servo servoDroite;
 
 // Variables pour les capteurs Ultra Son
 // F pour FRONT; L pour LEFT; M pour MIDDLE; R pour RIGHT
-// commande représente le déplacement en cour : 0 = auncun, 1 = reculer, 2 = tous les autres
+// commande représente le déplacement en cour : 0 = immobile et tous sauf reculer , 1 = reculer
 int dist_FL, dist_FM, dist_FR, dist_FU, dist_BU, dist_SL, dist_SR, commande = 0;
 
 // Variables pour le capteur boussole HMC5883L
@@ -45,6 +45,8 @@ void setup () {
     Serial.println("erreur connexion capteur HMC5883L..");
     delay(500);
   }
+  servoDroite.write(37);
+  servoGauche.write(130);
 }
 
 void loop () {
@@ -65,9 +67,18 @@ void loop () {
   envoi_mesures(dist_FL,dist_FM,dist_FR,dist_FU,dist_BU,dist_SL,dist_SR,angle);
   // Délais, 10 microsecondes est le min des capteurs US
   delay(100);
-  servoDroite.write(37);
-  //servoDroite.write(37+90);
-  servoGauche.write(130);
+  if(Serial.available() > 0) {
+    commande = Serial.parseInt();
+  }
+  Serial.println(commande);
+  if(commande==0){
+    servoDroite.write(37);
+    servoGauche.write(130);
+  }
+  else if(commande==1){
+    servoDroite.write(37+90);
+    servoGauche.write(130-90);
+  }
 }
 
 
@@ -133,11 +144,8 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
 
   // Capteur côté gauche
   if(commande==0){
-    trame+= "SL=-1;";
-  }
-  else if(commande==1){
     if(dist_SL>25){
-       trame += "FR=3;";
+       trame += "SL=3;";
     }
     else if(dist_SL<=25){
       if(dist_SL==-1){
@@ -154,7 +162,7 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
       trame += "SL=0;";
     }
   }
-  else if(commande==2){
+  else if(commande==1){
      if(dist_SL>40){
        trame += "SL=3;";
     }
@@ -171,6 +179,46 @@ void envoi_mesures(int dist_FL,int dist_FM,int dist_FR,int dist_FU,int dist_BU,i
     }
     else{
       trame += "SL=0;";
+    }
+  }
+
+  // Capteur côté droit
+  if(commande==0){
+    if(dist_SR>25){
+       trame += "SR=3;";
+    }
+    else if(dist_SR<=25){
+      if(dist_SR==-1){
+        trame += "SR=-1;";
+      }
+      else if(dist_SR<20){
+        trame += "SR=1;";
+      }
+      else{
+        trame += "SR=2;";
+      }
+    }
+    else{
+      trame += "SR=0;";
+    }
+  }
+  else if(commande==1){
+     if(dist_SR>40){
+       trame += "SR=3;";
+    }
+    else if(dist_SR<=40){
+      if(dist_SR==-1){
+        trame += "SR=-1;";
+      }
+      else if(dist_SR<35){
+        trame += "SR=1;";
+      }
+      else{
+        trame += "SR=2;";
+      }
+    }
+    else{
+      trame += "SR=0;";
     }
   }
    

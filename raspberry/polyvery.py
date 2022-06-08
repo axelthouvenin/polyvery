@@ -337,7 +337,7 @@ def LirePortSerie():
     while 1:
         trame=ser.readline()
         global commande
-        #ser.write("b'commande="+str(commande)+";'")  
+        ser.write(str(commande))  
         str_trame = str(trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "FU" in str_trame and "BU" in str_trame :
