@@ -62,7 +62,7 @@ def login():
 def acceuil():
     return render_template('accueil.html')
     
-@app.route('/login')
+@app.route('/login',methods=('GET', 'POST') )
 def deconnexion():
     if request.method == 'POST':
         password = request.form['password']
