@@ -64,6 +64,17 @@ def acceuil():
     
 @app.route('/login')
 def deconnexion():
+    if request.method == 'POST':
+        password = request.form['password']
+        print(password)
+        if password == "polyveryIA2R": #le mot de passe peut-être changé !
+            if utilisateur == False:
+                #utilisateur = True; peut etre remis lorsque que la sécurité marchera
+                return render_template('accueil.html')    
+            else :
+                return render_template('login.html',message="Une personne est déjà connectée au robot")
+        else:
+            return render_template('login.html',message="Mot de passe incorect")
     return render_template('login.html')
     
 @app.route('/pilotage')
@@ -155,7 +166,7 @@ def Avancer():
     global autorisation_mouvement
     if autorisation_mouvement == True:
         global avancer, angle
-        #avancer = True
+        "avancer = True
         #thread_trajectoire = threading.Thread(target = Trajectoire(angle))
         #thread_trajectoire.start()
         Desactiver()
@@ -276,18 +287,18 @@ def trajectoire(objectif):
         if objectif <-90 or objectif>90:
             if angle>gauche_min and angle<0 or angle<droite_min and angle>0:
                 if angle>gauche_min and angle<0:
-                    M2_Vitesse.start(35) # Moteur gauche
+                    M2_Vitesse.start(32.5) # Moteur gauche
                 else:
-                    M1_Vitesse.start(35) # Moteur droit
+                    M1_Vitesse.start(32.5) # Moteur droit
             else:
                 M1_Vitesse.start(30) # Moteur droit
                 M2_Vitesse.start(30) # Moteur gauche
         else:
             if angle>gauche_min and angle<180 or angle<droite_min and angle>-180:
                 if angle>gauche_min and angle<180:
-                    M2_Vitesse.start(35) # Moteur gauche
+                    M2_Vitesse.start(32.5) # Moteur gauche
                 else:
-                    M1_Vitesse.start(35) # Moteur droit
+                    M1_Vitesse.start(32.5) # Moteur droit
             else:
                 M1_Vitesse.start(30) # Moteur droit
                 M2_Vitesse.start(30) # Moteur gauche  
@@ -338,8 +349,10 @@ def LirePortSerie():
         trame=ser.readline()
         global commande
         commande = str(commande)
+        # pour informer l'arduino dans quel sens elle doit orienter les servo moteurs en fonction de la commande
         #ser.write(commande.encode())  
         str_trame = str(trame)
+        print(str_trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "SL" in str_trame and "SR" in str_trame  and "FU" in str_trame and "BU" in str_trame :
             # Reccupération des informations des capteurs US
@@ -377,9 +390,6 @@ thread_evitement = threading.Thread(target = EviterObstacle)
 thread_port_serie.start()
 thread_serveur.start()
 thread_evitement.start()
-
-# En cas de fin d'un des thread
-#if
 
     
 
