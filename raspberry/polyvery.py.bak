@@ -165,10 +165,6 @@ def MarcheMotorB( sens ):
 def Avancer():
     global autorisation_mouvement
     if autorisation_mouvement == True:
-        global avancer, angle
-        #avancer = True
-        #thread_trajectoire = threading.Thread(target = Trajectoire(angle))
-        #thread_trajectoire.start()
         Desactiver()
         MarcheMotorA( SENS_AVANT )
         MarcheMotorB( SENS_AVANT )
@@ -193,7 +189,6 @@ def Droite():
         MarcheMotorA( SENS_ARRIERE )
         MarcheMotorB( SENS_AVANT )
         Activer()
-        print("droite")
     return "1"
 
 @app.route('/Gauche')
@@ -347,12 +342,7 @@ def EviterObstacle():
 def LirePortSerie():
     while 1:
         trame=ser.readline()
-        global commande
-        commande = str(commande)
-        # pour informer l'arduino dans quel sens elle doit orienter les servo moteurs en fonction de la commande
-        #ser.write(commande.encode())  
         str_trame = str(trame)
-        print(str_trame)
         # C'est une trame d'angle et de capteurs US
         if "angle" in str_trame and "FM" in str_trame and "FL" in str_trame and "FR" in str_trame and "SL" in str_trame and "SR" in str_trame  and "FU" in str_trame and "BU" in str_trame :
             # Reccupération des informations des capteurs US
